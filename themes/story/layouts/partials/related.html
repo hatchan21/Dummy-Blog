@@ -1,0 +1,15 @@
+{{ $related := .Site.RegularPages.Related . | first 2 }}
+{{ with $related }}
+<div class="related-articles">
+    <h5>On Youtube</h5>
+    <img class="related-content-img" src="{{ "/images/why-you-should-subscribe-to-lokadtv.jpg" | absURL }}">
+    <a href="https://www.youtube.com/watch?v=_JMVOjuHnx4">Why you should subscribe to LokadTV</a>
+</div>
+<div class="related-articles">
+    <h5>On our Blog</h5>
+    {{ range . }}
+    <img class="related-content-img related-articles-img" src="{{ with .Params.image }}{{ . }}{{ end }}" />
+	<a href="{{ .RelPermalink }}" style="margin-bottom: 20px;">{{ .Title }}</a>
+	{{ end }}
+</div>
+{{ end }}

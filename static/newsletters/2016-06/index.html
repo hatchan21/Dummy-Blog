@@ -1,0 +1,716 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width"/>
+  <style>
+    /**********************************************
+    * Ink v1.0.5 - Copyright 2013 ZURB Inc        *
+    **********************************************/
+
+    /* Client-specific Styles & Reset */
+
+    #outlook a { padding:0; }
+    body{ width:100% !important; min-width: 100%; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; margin:0; padding:0; }
+
+    .ExternalClass { width:100%; }
+    .ExternalClass, 
+    .ExternalClass p, 
+    .ExternalClass span, 
+    .ExternalClass font, 
+    .ExternalClass td, 
+    .ExternalClass div { line-height: 100%; }
+
+    #backgroundTable { margin:0; padding:0; width:100% !important; line-height: 100% !important; }
+
+    img { outline:none; text-decoration:none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; float: left; clear: both; display: block; }
+    center { width: 100%; min-width: 580px; }
+    a img { border: none; }
+    p { margin: 0 0 0 10px; }
+    table { border-spacing: 0; border-collapse: collapse; }
+    td { word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; }
+    table, tr, td { padding: 0; vertical-align: top; text-align: left; }
+    hr { color: #d7d8d9; background-color: #d7d8d9; height: 1px; border: none; }
+
+    /* Responsive Grid */
+
+    table.body { height: 100%; width: 100%; }
+    table.container {width: 580px; margin: 0 auto; text-align: inherit; }
+    table.row {padding: 0px; width: 100%; position: relative; }
+    table.container table.row {display: block; }
+    td.wrapper {padding: 10px 20px 0px 0px; position: relative; }
+     table.columns,
+    table.column {margin: 0 auto; }
+    table.columns td,
+    table.column td {padding: 0px 0px 10px; }
+
+    table.columns td.sub-columns,
+    table.column td.sub-columns,
+    table.columns td.sub-column,
+    table.column td.sub-column { padding-right: 10px; }
+
+    td.sub-column, td.sub-columns { min-width: 0px; }
+
+    table.row td.last,
+    table.container td.last { padding-right: 0px; }
+
+    table.one { width: 30px; }
+    table.two { width: 80px; }
+    table.three { width: 130px; }
+    table.four { width: 180px; }
+    table.five { width: 230px; }
+    table.six { width: 280px; }
+    table.seven { width: 330px; }
+    table.eight { width: 380px; }
+    table.nine { width: 430px; }
+    table.ten { width: 480px; }
+    table.eleven { width: 530px; }
+    table.twelve { width: 580px; }
+
+    table.one center { min-width: 30px; }
+    table.two center { min-width: 80px; }
+    table.three center { min-width: 130px; }
+    table.four center { min-width: 180px; }
+    table.five center { min-width: 230px; }
+    table.six center { min-width: 280px; }
+    table.seven center { min-width: 330px; }
+    table.eight center { min-width: 380px; }
+    table.nine center { min-width: 430px; }
+    table.ten center { min-width: 480px; }
+    table.eleven center { min-width: 530px; }
+    table.twelve center { min-width: 580px; }
+
+    table.one .panel center { min-width: 10px; }
+    table.two .panel center { min-width: 60px; }
+    table.three .panel center { min-width: 110px; }
+    table.four .panel center { min-width: 160px; }
+    table.five .panel center { min-width: 210px; }
+    table.six .panel center { min-width: 260px; }
+    table.seven .panel center { min-width: 310px; }
+    table.eight .panel center { min-width: 360px; }
+    table.nine .panel center { min-width: 410px; }
+    table.ten .panel center { min-width: 460px; }
+    table.eleven .panel center { min-width: 510px; }
+    table.twelve .panel center { min-width: 560px; }
+
+    .body .columns td.one,
+    .body .column td.one { width: 8.333333%; }
+    .body .columns td.two,
+    .body .column td.two { width: 16.666666%; }
+    .body .columns td.three,
+    .body .column td.three { width: 25%; }
+    .body .columns td.four,
+    .body .column td.four { width: 33.333333%; }
+    .body .columns td.five,
+    .body .column td.five { width: 41.666666%; }
+    .body .columns td.six,
+    .body .column td.six { width: 50%; }
+    .body .columns td.seven,
+    .body .column td.seven { width: 58.333333%; }
+    .body .columns td.eight,
+    .body .column td.eight { width: 66.666666%; }
+    .body .columns td.nine,
+    .body .column td.nine { width: 75%; }
+    .body .columns td.ten,
+    .body .column td.ten { width: 83.333333%; }
+    .body .columns td.eleven,
+    .body .column td.eleven { width: 91.666666%; }
+    .body .columns td.twelve,
+    .body .column td.twelve { width: 100%; }
+
+    td.offset-by-one { padding-left: 50px; }
+    td.offset-by-two { padding-left: 100px; }
+    td.offset-by-three { padding-left: 150px; }
+    td.offset-by-four { padding-left: 200px; }
+    td.offset-by-five { padding-left: 250px; }
+    td.offset-by-six { padding-left: 300px; }
+    td.offset-by-seven { padding-left: 350px; }
+    td.offset-by-eight { padding-left: 400px; }
+    td.offset-by-nine { padding-left: 450px; }
+    td.offset-by-ten { padding-left: 500px; }
+    td.offset-by-eleven { padding-left: 550px; }
+
+    td.expander { visibility: hidden; width: 0px; padding: 0 !important; }
+
+    table.columns .text-pad,
+    table.column .text-pad { padding-left: 10px; padding-right: 10px; }
+
+    table.columns .left-text-pad,
+    table.columns .text-pad-left,
+    table.column .left-text-pad,
+    table.column .text-pad-left {padding-left: 10px; }
+
+    table.columns .right-text-pad,
+    table.columns .text-pad-right,
+    table.column .right-text-pad,
+    table.column .text-pad-right {padding-right: 10px; }
+
+    /* Block Grid */
+
+    .block-grid { width: 100%; max-width: 580px; }
+
+    .block-grid td { display: inline-block; padding:10px; }
+    .two-up td {width:270px; }
+    .three-up td {width:173px; }
+    .four-up td {width:125px; }
+    .five-up td {width:96px; }
+    .six-up td {width:76px; }
+    .seven-up td {width:62px; }
+    .eight-up td { width:52px; }
+
+    /* Alignment & Visibility Classes */
+
+    table.center, td.center { text-align: center; }
+
+    h1.center,
+    h2.center,
+    h3.center,
+    h4.center,
+    h5.center,
+    h6.center,
+    p.center { text-align: center; }
+
+    span.center { display: block; width: 100%; text-align: center; }
+
+    img.center { margin: 0 auto; float: none; }
+
+    .justify p { text-align: justify; }
+
+    .show-for-small,
+    .hide-for-desktop { display: none; }
+
+    /* Typography */
+
+    body, table.body, h1, h2, h3, h4, h5, h6, p, td { 
+      color: #222222;
+      font-family: "Helvetica", "Arial", sans-serif; 
+      font-weight: normal; 
+      padding:0; 
+      margin: 0;
+      text-align: left; 
+      line-height: 1.3;
+    }
+	
+    h1, h2, h3, h4, h5, h6 {
+      word-break: normal;
+      line-height: 1.1;
+    }
+
+    h1 {font-size: 40px;}
+    h2 {font-size: 36px;}
+    h3 {font-size: 32px;}
+    h4 {font-size: 28px;}
+    h5 {font-size: 24px;}
+    h6 {font-size: 20px;}
+    body, table.body, p {font-size: 14px;line-height:19px;}
+    td {font-size: 14px; }
+
+
+    p { margin-bottom: 10px; line-height: 20px; }
+      p.small { font-size: 11px; line-height:15px; }
+      p.lead, p.lede, p.leed { font-size: 18px; line-height:21px; }
+
+    blockquote { 
+      display:block; 
+      background:#f7f8f9;
+      font-family: Georgia, "Times New Roman", Times, Baskerville, serif; 
+      text-align: left;
+      margin:0px 0 20px 0;
+      padding:10px!important;
+      font-size: 16px; 
+      font-style: italic;
+      color:#666666;
+    }
+
+    small { font-size: 11px; }
+
+    a { color: #CC333F; text-decoration: none; }
+    a:hover { color: #9E2730 !important; text-decoration: underline; }
+    a:active { color: #E92C30 !important; }
+    a:visited { color: #D75E67 !important; }
+
+    h1 a, 
+    h2 a, 
+    h3 a, 
+    h4 a, 
+    h5 a, 
+    h6 a { color: #CC333F; }
+
+    h1 a:active, 
+    h2 a:active,  
+    h3 a:active, 
+    h4 a:active, 
+    h5 a:active, 
+    h6 a:active { color: #E92C30 !important; }
+
+    h1 a:visited, 
+    h2 a:visited,  
+    h3 a:visited, 
+    h4 a:visited, 
+    h5 a:visited, 
+    h6 a:visited { color: #D75E67 !important; }
+
+    /* Panels */
+    .panel {background: #f5f6f7; border: none; padding: 10px !important; }
+    
+    .sub-grid table {width: 100%; }
+    .sub-grid td.sub-columns {padding-bottom: 0; }
+
+    /* Buttons */
+
+    table.button,
+    table.tiny-button,
+    table.small-button,
+    table.medium-button,
+    table.large-button {width: 100%; overflow: hidden; }
+
+    table.button td,
+    table.tiny-button td,
+    table.small-button td,
+    table.medium-button td,
+    table.large-button td {
+      display: block;
+      width: auto !important;
+      text-align: center;
+      background: #CC333F;
+      border: none;
+      color: #ffffff;
+      padding: 8px 0;
+      -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;
+    }
+
+    table.tiny-button td {padding: 5px 0 4px; }
+    table.small-button td {padding: 8px 0 7px; }
+    table.medium-button td {padding: 12px 0 10px; }
+    table.large-button td {padding: 21px 0 18px; }
+
+    table.button td a,
+    table.tiny-button td a,
+    table.small-button td a,
+    table.medium-button td a,
+    table.large-button td a {font-weight: bold; text-decoration: none; font-family: Helvetica, Arial, sans-serif; color: #ffffff; font-size: 14px; }
+
+    table.tiny-button td a { font-size: 12px; font-weight: normal; }
+    table.small-button td a {font-size: 16px; }
+    table.medium-button td a {font-size: 20px; }
+    table.large-button td a {font-size: 24px; }
+    
+    table.button:hover td,
+    table.button:visited td,
+    table.button:active td {background: #CC333F !important; }
+    
+    table.button:hover td a, 
+    table.button:visited td a,
+    table.button:active td a {color: #fff !important; }
+
+    table.button:hover td,
+    table.tiny-button:hover td,
+    table.small-button:hover td,
+    table.medium-button:hover td,
+    table.large-button:hover td {background: #E82D3A !important; }
+
+    table.button:hover td a,
+    table.button:active td a,
+    table.button td a:visited,
+    table.tiny-button:hover td a,
+    table.tiny-button:active td a,
+    table.tiny-button td a:visited,
+    table.small-button:hover td a,
+    table.small-button:active td a,
+    table.small-button td a:visited,
+    table.medium-button:hover td a,
+    table.medium-button:active td a,
+    table.medium-button td a:visited,
+    table.large-button:hover td a,
+    table.large-button:active td a,
+    table.large-button td a:visited {color: #ffffff !important; }
+
+    table.secondary td {background: #e9e9e9; border-color: #d0d0d0; color: #555; }
+    table.secondary td a {color: #555; }
+
+    table.secondary:hover td {background: #d0d0d0 !important; color: #555; }
+    table.secondary:hover td a,
+    table.secondary td a:visited,
+    table.secondary:active td a { color: #555 !important; }
+
+    table.success td {background: #5da423; border-color: #457a1a; }
+    table.success:hover td {background: #457a1a !important; }
+    table.alert td {background: #c60f13; border-color: #970b0e; }
+    table.alert:hover td {background: #970b0e !important; }
+    table.radius td {-webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; }
+    table.round td {-webkit-border-radius: 500px; -moz-border-radius: 500px; border-radius: 500px; }
+
+    /* Outlook First */
+    body.outlook p { display: inline !important; }
+
+    /*  Media Queries */
+    @media only screen and (max-width: 600px) {
+
+      /* Typography - Mobile*/
+      h1 {font-size: 24px;}
+      h2 {font-size: 24px;}
+      h3 {font-size: 22px;}
+      h4 {font-size: 18px; font-weight: bold;}
+      h5 {font-size: 14px; font-weight: bold;}
+      h6 {font-size: 13px; font-weight: bold;}
+
+      table[class="body"] .center-for-small { text-align: center; }
+
+      table[class="body"] img { width: auto !important; height: auto !important; }
+      table[class="body"] center { min-width: 0 !important; }
+
+      table[class="body"] .container { width: 95% !important; }
+      table[class="body"] .row {width: 100% !important; display: block !important; }
+      table[class="body"] .wrapper {display: block !important; padding-right: 0 !important; }
+      table[class="body"] .columns,
+      table[class="body"] .column { table-layout: fixed !important; float: none !important; width: 100% !important; padding-right: 0px !important; padding-left: 0px !important; display: block !important; }
+
+      table[class="body"] .wrapper.first .columns,
+      table[class="body"] .wrapper.first .column { display: table !important; }
+
+      table[class="body"] table.columns td, 
+      table[class="body"] table.column td {width: 100% !important; }
+
+      table[class="body"] .columns td.one,
+      table[class="body"] .column td.one { width: 8.333333% !important; }
+      table[class="body"] .columns td.two,
+      table[class="body"] .column td.two { width: 16.666666% !important; }
+      table[class="body"] .columns td.three,
+      table[class="body"] .column td.three { width: 25% !important; }
+      table[class="body"] .columns td.four,
+      table[class="body"] .column td.four { width: 33.333333% !important; }
+      table[class="body"] .columns td.five,
+      table[class="body"] .column td.five { width: 41.666666% !important; }
+      table[class="body"] .columns td.six,
+      table[class="body"] .column td.six { width: 50% !important; }
+      table[class="body"] .columns td.seven,
+      table[class="body"] .column td.seven { width: 58.333333% !important; }
+      table[class="body"] .columns td.eight,
+      table[class="body"] .column td.eight { width: 66.666666% !important; }
+      table[class="body"] .columns td.nine,
+      table[class="body"] .column td.nine { width: 75% !important; }
+      table[class="body"] .columns td.ten,
+      table[class="body"] .column td.ten { width: 83.333333% !important; }
+      table[class="body"] .columns td.eleven,
+      table[class="body"] .column td.eleven { width: 91.666666% !important; }
+      table[class="body"] .columns td.twelve,
+      table[class="body"] .column td.twelve { width: 100% !important; }
+
+      table[class="body"] td.offset-by-one,
+      table[class="body"] td.offset-by-two,
+      table[class="body"] td.offset-by-three,
+      table[class="body"] td.offset-by-four,
+      table[class="body"] td.offset-by-five,
+      table[class="body"] td.offset-by-six,
+      table[class="body"] td.offset-by-seven,
+      table[class="body"] td.offset-by-eight,
+      table[class="body"] td.offset-by-nine,
+      table[class="body"] td.offset-by-ten,
+      table[class="body"] td.offset-by-eleven { padding-left: 0 !important; }
+
+       table[class="body"] table.columns td.expander { width: 1px !important; }
+      table[class="body"] .right-text-pad,
+      table[class="body"] .text-pad-right {padding-left: 10px !important; }
+      table[class="body"] .left-text-pad,
+      table[class="body"] .text-pad-left {padding-right: 10px !important; }
+      table[class="body"] .hide-for-small,
+      table[class="body"] .show-for-desktop {display: none !important; }
+      table[class="body"] .show-for-small,
+      table[class="body"] .hide-for-desktop {display: inherit !important; }
+    }
+
+  </style>
+
+  <style>
+
+    table.columns td.nav td { padding:5px 0; font-size:12px; line-height:15px; }
+    table.columns td.nav hr { margin:5px 0; }
+
+    .template-label { color: #999999; font-weight: normal; font-size: 11px; line-height:13px; }
+    .callout .panel { background: #ECF8FF; border-color: #b9e5ff; }
+    .header { background: #ffffff; }
+
+    .footer { margin-bottom:30px; }
+    .footer .wrapper {background: #2B2B2B; padding:18px 0 8px 0; }
+    .footer td, 
+    .footer p { font-size:11px; color:#cccccc; text-align: center; margin-bottom:0px; line-height:15px; }
+    .footer h5 {padding-bottom: 10px; }
+
+    table.columns .text-pad {padding-left: 10px; padding-right: 10px; }
+     table.columns .left-text-pad {padding-left: 10px; }
+    table.columns .right-text-pad {padding-right: 10px; }
+
+    @media only screen and (max-width: 600px) {
+
+      table[class="body"] .right-text-pad {padding-left: 10px !important; }
+      table[class="body"] .left-text-pad { padding-right: 10px !important; }
+
+    }
+
+  </style>
+</head>
+<body>
+  <table class="body">
+    <tr>
+      <td class="center" align="center" valign="top">
+        <center>
+          <table class="container">
+            <tr>
+              <td>
+
+              <!-- content start -->
+              <table class="row">
+                <tr>
+                  <td class="wrapper last">
+
+                    <table class="twelve columns">
+                      <tr>
+                        <td class="center">
+                            <p class="template-label">
+                              You're receiving this newsletter because you are registered with Lokad.com.
+                              Not interested anymore? <unsubscribe>Unsubscribe</unsubscribe>. <br />
+                              Having trouble reading this email? <webversion>View it in your browser</webversion>.
+                            </p>
+                            <img class="" src="newsletter_logo.png">
+                        </td>
+                        <td class="expander"></td>
+                      </tr>
+                    </table>
+
+                  </td>
+                </tr>
+              </table>
+
+              <table class="row">
+                <tr>
+                  <td class="wrapper">
+
+                    <!-- Sidebar - in this issue -->
+                    <table class="four columns">
+                      <tr>
+                        <td class="panel nav">
+                          <h6>In this issue</h6>
+                          <br />
+                          <table>
+                              <tr>
+                                <td>
+                                  <a href="#editorial">Editorial</a>
+                                </td>
+                              </tr>
+                            </table>
+                            <hr>
+                            <table>
+                              <tr>
+                                <td>
+                                  <a href="#probabilities">True probabilities</a>
+                                </td>
+                              </tr>
+                            </table>
+                            <hr>
+                            <table>
+                              <tr>
+                                <td>
+                                  <a href="#leadtime">Lead time forecasting</a>
+                                </td>
+                              </tr>
+                            </table>
+                            <hr>
+                            <table>
+                              <tr>
+                                <td>
+                                  <a href="#integrated">Integrated demand forecasting</a>
+                                </td>
+                              </tr>
+                            </table>
+							              <hr>
+                            <table>
+                              <tr>
+                                <td>
+                                  <a href="#newproduct">New products forecasting</a>
+                                </td>
+                              </tr>
+                            </table>
+							              <hr>
+                            <table>
+                              <tr>
+                                <td>
+                                  <a href="#stockout">Stock-outs and promotions</a>
+                                </td>
+                              </tr>
+                            </table>
+                            <hr>
+                            <table>
+                              <tr>
+                                <td>
+                                  <a href="#sparse">Ultra-sparse demand</a>
+                                </td>
+                              </tr>
+                            </table>
+                            <hr>
+                            <table>
+                              <tr>
+                                <td>
+                                  <a href="#envision">Blended into Envision</a>
+                                </td>
+                              </tr>
+                            </table>
+                        </td>
+                        <td class="expander"></td>
+                      </tr>
+                    </table>
+                    <br>
+                    
+                    <!-- More news -->
+                    <table class="four columns">
+                      <tr>
+                        <td class="panel">
+                          <h6>More News</h6>
+                          <br />
+                          <table>
+                              <tr>
+                                <td>
+                  <a href="http://blog.lokad.com/journal/2015/9/4/streetlight-effect-and-forecasting">Streetlight effect and forecasting</a>
+                  <p class="small">A policeman sees a drunk man searching for something under a streetlight and asks what the drunk has lost. He says he lost his keys and they both look under the streetlight together. After a few minutes the policeman asks if he is sure he lost them here, and the drunk replies, no, and that he lost them in the park. The policeman asks why he is searching here, and the drunk replies, "this is where the light is." David H. Freedman (2010). Wrong: Why Experts Keep Failing Us.</p>
+                  <hr>
+                  <a href="http://blog.lokad.com/journal/2016/6/14/working-with-uncertain-futures">Working with uncertain futures</a>
+                  <p class="small">The future is uncertain. Yet, nearly all predictive supply chain solutions make the opposite assumption: they assume that their forecasts are correct, and hence roll out their simulations based on those forecasts. Implicitly, the future is assumed to be certain and complications ensue.</p>
+								  <hr>
+								  <a href="http://blog.lokad.com/journal/2016/1/18/solving-the-general-moq-problem">Solving the general MOQ problem</a>
+                  <p class="small">Minimal Order Quantities (MOQs) are ubiquitous in supply chain. At a fundamental level, MOQs represent a simple way for the supplier to indicate that there are savings to be made when products are ordered in batches rather than being ordered unit by unit. From the buyer's perspective, however, dealing with MOQs is far from being a trivial matter. The goal is not merely to satisfy the MOQs - which is easy, just order more - but to satisfy the MOQs while maximizing the ROI.</p>
+								  <hr>
+								  <a href="http://blog.lokad.com/journal/2015/12/15/the-stock-reward-function">The Stock Reward Function</a>
+                  <p class="small">The classic way of thinking about replenishment consists of establishing one target quantity per SKU. This target quantity typically takes the form of a reorder point which is dynamically adjusted based on the demand forecast for the SKU. However, over the years at Lokad, we have realized that this approach was very weak in practice, no matter how good the (classic) forecasts.</p>
+								  <hr>
+								  <a href="http://blog.lokad.com/journal/2016/4/8/proofs-of-concept-dont-work-in-quantitative-supply-chain-optimization">Proofs of concept don’t work in quantitative supply chain optimization</a>
+                  <p class="small">We frequently decline such proof-of-concept requests; first because they hurt client’s company itself, and second because they also hurt Lokad in the process. Since POCs – or proofs-of-concept – are so widespread in B2B software, it is usually hard to grasp why they can be downright harmful in the specific case of quantitative supply chain optimization.</p>
+								  <hr>
+                  <a href="http://blog.lokad.com/journal/2015/11/18/optimizing-container-shipments">Optimizing container shipments</a>
+                  <p class="small">Supply chain management has long gone global: even small businesses are now importing goods from overseas whenever they identify the right business opportunities. However, while supply chain data can flow back and forth across the globe at a fraction of the speed of light, physical goods are still mostly freighted via containers with lead times counted in weeks, if not months.</p>
+								  
+                                </td>
+                              </tr>
+                          </table>
+                          
+                        </td>
+                        <td class="expander"></td>
+                      </tr>
+                    </table>
+
+                  </td>
+                  <td class="wrapper last">
+                    
+        <!-- Main content -->
+        <table class="eight columns justify">
+          <tr>
+            <td>
+              <a name="editorial" id="editorial"></a>
+						  <h5>Editorial </h5>
+              <hr>
+                <p><img src="joannes-vermorel.jpg" style="float:right;margin-left:25px" alt="Portrait of Joannes Vermorel"> Lokad has been growing tremendously over the last 12 months. Back in December, we moved to offices twice the size of the previous ones, and our brand new offices are now getting full again. This commercial growth has boosted our R&amp;D capabilities as well, and our innovation pace has increased accordingly. In May 2016, we have unveiled our 4th generation forecasting engine. This engine is natively built around native probabilistic forecasts, and addresses many concerns we had with our previous iterations. This newsletter is dedicated to this engine. Yet, this new forecasting engine was hardly the only development brought by Lokad over the last few months. Be sure to check our “News” columns for my selection of the most salient piece of technology recently released by Lokad.</p>
+						  <p>
+						   <i>Joannes Vermorel, Founder of Lokad</i>
+						  </p>
+
+              <br>
+              
+              <a id="probabilities"></a>
+              <h5>True probabilities</h5>
+              <hr>
+              <p>The future is uncertain no matter how good the forecasting technology. Back in 2012, when Lokad first ventured into the depths of quantile forecasting, we quickly realized that uncertainty should not be dismissed like it's done with the classic forecasting approach, but should rather be embraced. Simply put, supply chain costs are concentrated at the statistical extremes: it's the surprisingly high demand that causes stock-outs, and the surprisingly low demand that causes dead inventory. In the middle, supply chain tends to operates quite smoothly.</p>
+
+              <p>With quantile grids, Lokad was delivering a much more fine-grained vision of possible future outcomes. However, as the name suggests, our quantile grids were built on top of our quantile forecasts, multiple layers of quantiles actually. These quantile grids proved to be tremendously useful over the last year, but while our forecasting engine was producing probabilities, internally, nearly all its logic was not working directly with probabilities. The probabilities we computed were a byproduct of a quantile forecasting system.</p>
+
+              <p>Because of these quantile roots, our forecasting engine 3.0 had multiple subtle limitations. And while most of these limitations were too subtle to be noticed by clients, they did not go ignored by Lokad’s R&amp;D team. Thus, we decided to reboot our entire forecasting technology with a true native probabilistic forecasting perspective; and this was the start of the forecasting engine 4.0.</p>
+              <br>
+                          
+						  <a id="leadtime"></a>
+              <h5>Lead time forecasting</h5>
+						  <hr>
+						  <p>Lead times are frequently assumed to be a given. However, while past lead times are known, future lead times can only be estimated. For years, Lokad had under-estimated the challenge of accurately approximating the future lead times. Lead times are subtle: most statistical patterns, such as seasonality (and the Chinese New Year in particular), which impact the demand, also impact the lead time.</p>
+
+              <p>In our forecasting engine 4.0, lead times have become first-class citizens with their own lead time forecasting mode. Lead times now benefit from dedicated built-in forecasting models. Naturally, with our engine being a probabilistic forecasting engine, lead time forecasts are a distribution of probabilities associated with an uncertain time period.</p>
+              <br>
+                          
+						  <a id="integrated"></a>
+              <h5>Integrated demand forecasting</h5>
+						  <hr>
+              <p>Lead times vary, and yet, our forecasting engine 3.0 was stuck with fixed lead times. From a traditional perspective, the classic safety stock analysis assumes that lead time follows a normal distribution, while nearly all measurements we have ever carried out indicate that varying lead times are clearly not normally distributed. While our experiments routinely showed that having a fixed lead time was better than having a flawed model, being stuck with static lead times was nevertheless not the perfectly satisfying solution we were looking for.</p>
+
+              <p>The forecasting engine 4.0 introduces the concept of integrated demand forecasting, with integrated signifying integrated over the lead time. The engine takes a full distribution of lead time probabilities, and produces the corresponding probabilistic demand forecast. In practice, the lead time distribution is also computed by the forecasting engine as seen previously. Integrated demand forecasting finally brings a satisfying answer to the challenge of dealing with varying lead times.</p>
+						  <br>
+						  
+						  <a id="newproduct"></a>
+              <h5>New product forecasting</h5>
+						  <hr>
+              <p>Forecasting demand for new product is plain hard. Since, in this case, forecasting obviously cannot rely on the sales history, the forecasting engine has to rely on other data known about the product prior to its launch. Our forecasting engine 3.0 already had a tags framework, precisely geared towards this specific use case. However, tags were unfortunately not carrying as much information as we would have liked and some accuracy was left on the table.</p>
+
+              <p>With 4.0, this specific challenge is revised with the introduction of categories and hierarchies. Categories and hierarchies are more expressive as well as more structured than tags, and convey a lot more information. The forecasting engine 4.0 takes the full advantage of this richer data framework to deliver more accurate forecasts, with new-product forecasting being the most acute use case.</p> 
+						  <br>
+						  
+						  <a id="stockout"></a>
+              <h5>Stock-outs and promotions</h5>
+						  <hr>
+              <p>The intent of the forecasting engine is to forecast the future demand. However, our knowledge of past demand is typically imperfect, with only past sales really being known. Sales typically tends to be a reasonable approximation of the demand, but sales come with multiple biases, the most common cases being stock-outs and promotions. Our engine 3.0 already had a few heuristics to deal with this bias, plus quantile forecasts are intrinsically more robust than (classic) average forecasts. Yet, once again, the situation was not entirely satisfying for us.</p>
+
+              <p>The engine 4.0 introduces the notion of biased demand, which can be either censored or inflated. When the demand for a given product on a given day is marked as censored, we are telling the forecasting engine that the demand should have been higher, and that the true demand for that day remains unknown. The engine leverages this information to refine the forecasts, even when the history is full of events which have distorted the demand signal.</p>
+              <br>
+
+              <a id="sparse"></a>
+              <h5>Ultra-sparse demand</h5>
+						  <hr>
+              <p>While quantile forecasts are vastly superior to classic average or median forecasts when it comes to estimating the probabilities of rare events, quantiles begin demonstrating their limits when it comes to estimating super-rare events. For example, our quantile models were struggling to properly deal with items sold only once or twice a year, as well as handling service levels higher than 98%.</p>
+
+              <p>Native probabilistic models, as implemented in our engine 4.0, are much better behaved when it comes to ultra-sparse demand and “rare” events in general. These models could have been implemented within a quantile forecasting framework (a probabilistic forecast can be easily turned into a quantile forecast); but our engine 3.0 did not have the infrastructure to support them. So they were implemented into the engine 4.0 instead.</p>
+              <br>
+
+              <a id="envision"></a>
+              <h5>Blended into Envision</h5>
+						  <hr>
+              <p>Versions 2.0 and 3.0 of our forecasting engine came with a web user interface. At first glance, it seemed easy. However, the user interface was actually dismissing the factor which represents the true challenge of using (any) forecasting engine, which is to provide complete control of the data transferred into the forecasting engine. Indeed, garbage-in, garbage-out remains an all too frequent problem.</p>
+
+              <p>The engine 4.0 is interfaced from within Envision, our domain-specific language geared towards quantitative optimization for commerce. Calling the forecasting engine takes a series of data arguments provided from an Envision script. This approach requires a bit more upfront effort, however, the productivity benefits kick in rapidly; as soon as adjustments are made on the input data.</p>
+              <br>
+
+            </td>
+            <td class="expander"></td>
+          </tr>
+        </table>
+
+      </td>
+    </tr>
+  </table>
+  
+  <br>
+              
+              <!-- Footer -->
+              <table class="row footer">
+                <tr>
+                  <td class="wrapper last">
+
+                    <table class="twelve columns">
+                      <tr>
+                        <td align="center">
+                          <center>
+                            <p>Lokad and the Lokad Logo are registered trademarks of Lokad SAS.</p>
+                            <p>Lokad SAS - 14 rue des Reculettes, Paris, France, +1 (716) 989 6531 / +33 1 75 57 47 63</p>
+                          </center>
+                        </td>
+                        <td class="expander"></td>
+                      </tr>
+                    </table>
+
+                  </td>
+                </tr>
+              </table>
+
+              <!-- container end below -->
+              </td>
+            </tr>
+          </table>
+
+        </center>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

@@ -1,0 +1,109 @@
+{{ define "title" }}{{ cond (eq .Site.Params.titlecase true) (.Title | title | markdownify) (.Title | markdownify) }}{{ end }}
+
+{{ define "main" }}
+
+<a href="javascript:" id="return-to-top"><i class="icon-chevron-up"></i></a>
+<script>
+	// ===== Scroll to Top ==== 
+$(window).scroll(function() {
+    if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
+        $('#return-to-top').fadeIn(200);    // Fade in the arrow
+    } else {
+        $('#return-to-top').fadeOut(200);   // Else fade out the arrow
+    }
+});
+$('#return-to-top').click(function() {      // When arrow is clicked
+    $('body,html').animate({
+        scrollTop : 0                       // Scroll to top of body
+    }, 500);
+});	
+</script>
+<!--{{- $hdr := cond (or (in .Site.Params.classes "feature-nohdr") (in .Params.classes "feature-nohdr")) false true -}}-->
+<header class="cover bg-top single-header" {{ if $hdr }}style="background-image: url('{{ absURL (default "img/banner_blog_articles.png" .Params.headerimage) }}'); background-position: center;"{{ end }}>
+	<div class="{{ cond $hdr "bb bt" "" }}">
+		<!-- old nav 
+		<nav class="hide-print sans-serif {{ cond $hdr "" "bg-black" }} border-box pa3 ph5-l">
+			<a href="{{ .Site.BaseURL }}" title="Home">
+				<img src="{{ "img/logo.jpg" | absURL }}" class="w2 h2 br-100" alt="{{ .Site.Title }}" />
+			</a>
+			<div class="fr h2 pv2 tr">
+				{{- range .Site.Menus.main }}
+				<a class="link f5 ml2 dim near-white" href="{{ .URL }}">{{ .Name }}</a>
+				{{- end }}
+				{{- range .Site.Menus.social }}
+				<a class="link f5 ml2 dim near-white" href="{{ .URL }}"><i class="{{ .Title }}"></i></a>
+				{{- end }}
+				<a class="link f5 ml2 dim near-white fas fa-rss-square" href="{{ "index.xml" | absURL }}" title="RSS Feed"></a>
+				<a class="link f5 ml2 dim near-white fas fa-search" href="{{ "search/" | absURL }}" role="search" title="Search"></a>
+			</div>
+		</nav>
+		-->
+		<div id="hdr" class="tc-l {{ cond $hdr "pv4-ns pv5-l" "" }} pv2 ph3 ph4-ns">
+			<h1 class="{{ cond $hdr "near-white mt1-ns" "" }} f2 fw3 mb0 mt0 lh-title main-title main-title-single">{{ cond (eq .Site.Params.titlecase true) (.Title | title | markdownify) (.Title | markdownify) }}</h1>
+		</div>
+	</div>
+</header>
+<div class="single-post-container">
+	<article class="bg-white br-3 pv1 ph4 lh-copy f5 nested-links w-80 post-left">
+		{{- $hdr := cond (or (in .Site.Params.classes "feature-nohdr") (in .Params.classes "feature-nohdr")) false true -}}	
+		{{ if .IsPage }}
+				<div class="post-info">
+					<div class="date-article">
+							{{ if eq .Section "talks" }}
+								Presented
+								<time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+									{{- .Date.Format "January 2, 2006" -}}
+								</time>
+								at <a class="no-underline category {{ cond $hdr "near-white dim" "black hover-gray" }}" href="{{ .Params.site }}">{{ .Params.event }}</a>
+							{{ else }}
+								Published
+								<time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+									{{- .Date.Format "Jan 2, 2006" -}}
+								</time>
+								<span class="display-print">by {{ .Params.author | default .Site.Params.author }}</span>
+								{{ range $idx, $cat := .Params.categories }}{{ if gt $idx 0 }}, {{ end }}{{ if eq $idx 0 }} in {{ end }}<a href="{{ "categories/" | absURL }}/{{ . | urlize }}" class="no-underline category {{ cond $hdr "near-white dim" "black hover-gray" }}">{{ . | title }}</a>{{ end }}
+								<span class="display-print">at {{ .Permalink }}</span>
+							{{ end }}
+						{{ else }}
+							{{ with .Params.subtitle }}{{ . | markdownify }}{{ end }}
+						{{ end }}
+					</div>
+					<div class="tags-topblock">
+							{{ with .Params.tags }}
+							{{ $total := len . }}
+							{{ if gt $total 0 }}
+							{{ $subtotal := sub $total 1 }}
+							{{ range $i, $tag := sort . }}
+							<a class="meta" href="{{ "/journal/tag/" | relURL }}{{ $tag | urlize }}">{{ $tag | lower }}</a>{{ if lt $i $subtotal }} {{ end }}
+							{{ end }}
+						{{ end }}
+						{{ end }}
+					</div>
+				</div>
+				<h3 class="post-author">JOANNES VERMOREL</h3>
+		{{ .Content }}
+	</article>
+	<div class="article-sidebar w-20"> 
+			<div class="sidebar-top-content">
+				<h4><a href="https://blog.lokad.com/">RETOUR AU BLOG<span class="back-arrow">&rsaquo;</span></a></h4>
+				<div class="social"><a class="social-item" href="https://www.youtube.com/LokadTV"><svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><g><path d="M17.808.947c9.536 0 17.278 7.742 17.278 17.278 0 9.535-7.742 17.277-17.278 17.277C8.273 35.502.53 27.76.53 18.225.53 8.69 8.274.947 17.81.947zm0 2.608c8.097 0 14.67 6.573 14.67 14.67 0 8.096-6.573 14.67-14.67 14.67-8.096 0-14.67-6.574-14.67-14.67 0-8.097 6.574-14.67 14.67-14.67z"/><path style="fill: black;" d="M11.42 7.793h1.252l.86 3.218.796-3.217h1.264l-1.448 4.786v3.265H12.9V12.58l-1.48-4.787zm5.733 2.063c-.973 0-1.618.643-1.618 1.595v2.912c0 1.047.547 1.592 1.618 1.592.888 0 1.587-.594 1.587-1.592v-2.91c0-.93-.693-1.596-1.587-1.596zm.46 4.457c0 .323-.164.56-.46.56-.306 0-.483-.248-.483-.56V11.55c0-.326.15-.567.46-.567.34 0 .484.234.484.566v2.763zm4.112-4.408v4.51c-.134.167-.434.444-.65.444-.234 0-.293-.163-.293-.4V9.904h-1.104v4.964c0 .586.18 1.06.77 1.06.335 0 .8-.174 1.277-.742v.656h1.105v-5.94h-1.105zm1.916 12.047c-.39 0-.47.274-.47.664v.573h.93v-.575c0-.383-.08-.663-.46-.663zm-4.088.035c-.073.038-.145.095-.217.172v3.524c.086.092.17.16.25.2.17.086.42.092.537-.06.06-.08.092-.208.092-.39v-2.92c0-.19-.038-.335-.112-.434-.128-.168-.366-.186-.55-.093zm4.196-4.516c-2.263-.153-9.62-.153-11.88 0-2.446.168-2.735 1.646-2.753 5.536.018 3.883.304 5.368 2.753 5.535 2.26.155 9.617.155 11.88 0 2.447-.166 2.735-1.645 2.754-5.534-.02-3.883-.305-5.368-2.754-5.535zm-10.713 9.29H11.85v-6.554h-1.226v-1.113h3.636v1.113h-1.226v6.555zm4.213 0h-1.052v-.624c-.194.23-.396.406-.605.526-.566.325-1.344.318-1.344-.83v-4.727h1.05v4.336c0 .23.056.382.28.382.206 0 .49-.264.62-.424v-4.293h1.05v5.656h.002zm4.048-1.17c0 .7-.262 1.243-.96 1.243-.387 0-.707-.14-1-.507v.435h-1.062v-7.667h1.062v2.47c.237-.29.56-.53.935-.53.77 0 1.027.652 1.027 1.418v3.14zm3.887-1.524H23.17v1.067c0 .424.038.79.46.79.444 0 .47-.298.47-.79v-.393h1.083v.425c0 1.09-.468 1.75-1.576 1.75-1.004 0-1.518-.732-1.518-1.75v-2.54c0-.98.647-1.663 1.596-1.663 1.01 0 1.496.642 1.496 1.664v1.44z"/></g></svg></a><a class="social-item" href="https://www.linkedin.com/company/lokad"><svg viewBox="0 0 35 36" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><g><path d="M17.29.947c9.536 0 17.278 7.742 17.278 17.278 0 9.535-7.742 17.277-17.278 17.277C7.754 35.502.012 27.76.012 18.225.012 8.69 7.754.947 17.29.947zm0 2.608c8.096 0 14.67 6.573 14.67 14.67 0 8.096-6.574 14.67-14.67 14.67S2.62 26.32 2.62 18.224c0-8.097 6.574-14.67 14.67-14.67z" /><g><path style="fill: black;" d="M8.982 15.66l3.406-.042V26.77l-3.406.044V15.66zM15.24 15.66l3.254-.04V17.44c.964-.945 1.958-1.66 3.545-1.66 1.872 0 3.683.785 3.683 3.342v7.65l-3.303.05v-5.845c0-1.288-.323-2.12-1.862-2.12-1.356 0-1.924.244-1.924 2.028v5.888l-3.394.04V15.662zM12.586 12.143c0 1.03-.835 1.865-1.865 1.865-1.028 0-1.863-.835-1.863-1.865s.835-1.864 1.864-1.864c1.03 0 1.866.834 1.866 1.863z"/></g></g></svg></a><a class="social-item" href="https://twitter.com/lokad"><svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><g><path d="M17.772.947c9.535 0 17.277 7.742 17.277 17.278 0 9.535-7.743 17.277-17.278 17.277C8.236 35.502.494 27.76.494 18.225.494 8.69 8.236.947 17.772.947zm0 2.608c8.096 0 14.67 6.573 14.67 14.67 0 8.096-6.574 14.67-14.67 14.67-8.097 0-14.67-6.574-14.67-14.67 0-8.097 6.573-14.67 14.67-14.67z" /><path style="fill: black;" d="M14.32 26.822c7.683 0 11.884-6.364 11.884-11.882 0-.18-.004-.36-.012-.54.816-.59 1.525-1.325 2.084-2.163-.75.333-1.554.557-2.4.658.864-.517 1.526-1.335 1.838-2.31-.807.478-1.7.826-2.652 1.013-.762-.81-1.847-1.32-3.05-1.32-2.305 0-4.175 1.87-4.175 4.177 0 .327.036.646.108.952-3.47-.175-6.55-1.837-8.61-4.364-.357.618-.564 1.335-.564 2.1 0 1.45.738 2.728 1.86 3.476-.686-.022-1.33-.21-1.892-.523v.053c0 2.023 1.44 3.71 3.35 4.094-.35.096-.72.147-1.1.147-.27 0-.532-.025-.786-.074.53 1.66 2.073 2.867 3.9 2.9-1.428 1.12-3.23 1.788-5.186 1.788-.337 0-.67-.02-.996-.058 1.848 1.185 4.043 1.876 6.402 1.876"/></g></svg></a></div>
+				<a class="btn btn-primary btn-sidebar" href="https://hub.lokad.com/Register">CONTACT</a>
+			</div>
+			<div class="sidebar-bot-content">
+				<h4>Others you may like</h4>
+				{{ $related := .Site.RegularPages.Related . }}
+				{{ partial "related.html" . }}
+			</div>
+	</div>
+</div>
+{{ end }}
+
+{{ define "social" }}
+		<meta name="og:title" content="{{ cond (eq .Site.Params.titlecase true) (.Title | title | markdownify) (.Title | markdownify) }}" />
+		<meta name="og:type" content="article" />
+		<meta name="og:description" content="{{ .Description | markdownify }}" />
+		<meta name="og:url" content="{{ .Permalink }}" />
+		<meta name="og:site_name" content="{{ cond (eq .Site.Params.titlecase true) (.Title | title | markdownify) (.Title | markdownify) }}" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:site" content="@{{ .Site.Params.twitter }}" />
+{{ end }}

@@ -1,0 +1,124 @@
+{{ define "main" }}
+
+<a href="javascript:" id="return-to-top"><i class="icon-chevron-up"></i></a>
+<script>
+	// ===== Scroll to Top ==== 
+$(window).scroll(function() {
+    if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
+        $('#return-to-top').fadeIn(200);    // Fade in the arrow
+    } else {
+        $('#return-to-top').fadeOut(200);   // Else fade out the arrow
+    }
+});
+$('#return-to-top').click(function() {      // When arrow is clicked
+    $('body,html').animate({
+        scrollTop : 0                       // Scroll to top of body
+    }, 500);
+});	
+</script>
+<!--{{- $hdr := cond (or (in .Site.Params.classes "feature-nohdr") (in .Params.classes "feature-nohdr")) false true -}}-->
+<header class="cover bg-top" {{ if $hdr }}style="background-image: url('{{ absURL (default "img/banner-rocket.png" .Params.headerimage) }}'); background-position: center;"{{ end }}>
+	<div class="{{ cond $hdr "bb bt" "" }}">
+		<div id="hdr" class="tc-l {{ cond $hdr "pv4-ns pv5-l" "" }} pv2 ph3 ph4-ns">
+			<h1 class="{{ cond $hdr "near-white mt1-ns" "" }} f2 fw3 mb0 mt0 lh-title main-title">{{ cond (eq .Site.Params.titlecase true) (.Title | title | markdownify) (.Title | markdownify) }}</h1>
+			<h2 class="{{ cond $hdr "near-white mt3-l mb4-l" "" }} fw1 f6 f3-l measure-wide-l lh-copy mt2 mb3 subtitle">where supply chain and rocket science meet</h2>
+			<!-- You can put a subtitle here in _index.md parameters, or it'll get
+				filled in with date and categories if it's a post -->
+			</h2>
+			<a class="btn btn-secondary" href="https://hub.lokad.com/Register">SUBSCRIBE</a>
+		</div>
+	</div>
+</header>
+
+<div class="top-section">
+	<div class="post-hightlight">
+		<img class="desktop-img w-70-l w-60-m" src="/images/Real-time-data-exploration-with-slices-large.jpg">
+		<div class="post-hightlight-description w-30-l w-40-m w-100-ns">
+			<div class="post-hightlight-description-topblock">
+				<p>21 janv 2019</p>
+				<h6><a href="/journal/tag/features">FEATURES</a></h6>
+			</div>
+			<img class="mobile-img" src="/images/Real-time-data-exploration-with-slices.jpg">
+			<div class="post-hightlight-content">
+				<h2><a href="/journal/2019/1/28/real-time-data-exploration-with-slices/"><span class="main-lettrin">R</span>eal-time data exploration with slices</a></h2>
+				<p>A new Envision feature for business-intelligence-on-steroid capabilities.</p>
+				<div class="read-more">
+					<svg class="main-rocket" href="{{ .Permalink }}" style="width: 40px;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 270.11 132.46"><defs><style>.cls-1,.cls-6,.cls-7{fill:#fff;}.cls-1{opacity:0.5;}.cls-2{fill:#f87551;}.cls-13,.cls-2,.cls-7{stroke:#828282;}.cls-13,.cls-2,.cls-6,.cls-7{stroke-miterlimit:10;}.cls-3{fill:#989897;}.cls-4{fill:#cbcbca;}.cls-5{fill:#f3f4f5;}.cls-6{stroke:#59595b;stroke-width:2px;}.cls-7{stroke-width:3px;}.cls-8{fill:url(#linear-gradient);}.cls-9{fill:#3d7898;}.cls-10{fill:#232323;opacity:0.39;}.cls-11{fill:url(#radial-gradient);}.cls-12{fill:url(#radial-gradient-2);}.cls-13{fill:url(#linear-gradient-2);}</style><linearGradient id="linear-gradient" x1="191.42" y1="1078.01" x2="231.17" y2="1078.01" gradientTransform="translate(1278.67 -151.68) rotate(89.67)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fff"/><stop offset="0.14" stop-color="#fbfbfb"/><stop offset="0.26" stop-color="#f0f0f0"/><stop offset="0.39" stop-color="#ddd"/><stop offset="0.51" stop-color="#c3c3c3"/><stop offset="0.63" stop-color="#a0a0a0"/><stop offset="0.75" stop-color="#767676"/><stop offset="0.86" stop-color="#454545"/><stop offset="0.98" stop-color="#0c0c0c"/><stop offset="1"/></linearGradient><radialGradient id="radial-gradient" cx="-241.95" cy="1280.63" r="26.04" gradientTransform="matrix(0, 0.69, -1, 0.01, 1280.7, 229.93)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fdbb11"/><stop offset="0.45" stop-color="#fdb911"/><stop offset="0.61" stop-color="#fcb212"/><stop offset="0.73" stop-color="#faa714"/><stop offset="0.82" stop-color="#f89617"/><stop offset="0.9" stop-color="#f5801b"/><stop offset="0.97" stop-color="#f26520"/><stop offset="1" stop-color="#f05722"/></radialGradient><radialGradient id="radial-gradient-2" cx="-256.83" cy="1282.06" r="27.27" xlink:href="#radial-gradient"/><linearGradient id="linear-gradient-2" x1="204.12" y1="1213.69" x2="218.08" y2="1213.69" gradientTransform="translate(1278.67 -151.68) rotate(89.67)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#bbbcbf"/><stop offset="0.01" stop-color="#bfb6b6"/><stop offset="0.07" stop-color="#cca097"/><stop offset="0.14" stop-color="#d88e7b"/><stop offset="0.22" stop-color="#e17f65"/><stop offset="0.31" stop-color="#e87354"/><stop offset="0.42" stop-color="#ed6b49"/><stop offset="0.57" stop-color="#f06642"/><stop offset="1" stop-color="#f16540"/></linearGradient></defs><title>rocket_article</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_2-2" data-name="Layer 2"><path class="cls-1" d="M105.39,130.38c-12.54,3.89-84,1.12-84,1.12S67.51,99.32,80,95.44s28.38.79,35.38,10.44S117.92,126.5,105.39,130.38Z"/><path class="cls-2" d="M105.37,126.88c-12.54,3.89-84,4.62-84,4.62S67.49,95.83,80,91.94s28.38.79,35.38,10.44S117.9,123,105.37,126.88Z"/><path class="cls-1" d="M104.65,1.7c-12.58-3.74-84-.15-84-.15S67.13,33.19,79.71,36.93,108.07,35.82,115,26.09,117.23,5.44,104.65,1.7Z"/><path class="cls-2" d="M104.67,5.2c-12.58-3.74-84-3.65-84-3.65S67.15,36.69,79.73,40.43,108.09,39.32,115,29.59,117.25,8.94,104.67,5.2Z"/><path class="cls-3" d="M55.44,94.69C45.81,94.75,38,91,38,86.23l-.22-40.09c0-4.73,7.75-8.6,17.37-8.66h0c9.63,0,17.45,3.74,17.48,8.46L72.82,86c0,4.73-7.75,8.61-17.38,8.66Z"/><path class="cls-4" d="M267.89,65.21,52.79,66.45l.2,35.67c22.81,9.55,54.75,15.4,90.09,15.2C212.17,116.92,267.89,65.21,267.89,65.21Z"/><path class="cls-5" d="M267.89,65.21,52.79,66.45l-.2-35.59c22.69-9.79,54.56-16,89.9-16.19C211.59,14.27,267.89,65.21,267.89,65.21Z"/><path class="cls-6" d="M55.44,94.69C45.81,94.75,38,91,38,86.23l-.22-40.09c0-4.73,7.75-8.6,17.37-8.66h0c9.63,0,17.45,3.74,17.48,8.46L72.82,86c0,4.73-7.75,8.61-17.38,8.66Z"/><path class="cls-7" d="M142.49,14.67c-35.34.2-67.21,6.4-89.9,16.19l.2,35.59.2,35.67c22.81,9.55,54.75,15.4,90.09,15.2,69.09-.4,124.81-52.11,124.81-52.11S211.59,14.27,142.49,14.67Z"/><path class="cls-2" d="M199.21,65.81a128.39,128.39,0,0,0,5.91,38.25c37.55-15.44,62.77-38.84,62.77-38.84s-25.45-23-63.13-38A128.49,128.49,0,0,0,199.21,65.81Z"/><path class="cls-8" d="M202,85.63c-12.26.07-22.25-8.77-22.32-19.74s9.83-19.93,22.09-20S224,54.66,224.08,65.64,214.25,85.56,202,85.63Z"/><path class="cls-9" d="M202,80.32c-9,.06-16.31-6.42-16.35-14.46s7.2-14.61,16.18-14.66,16.31,6.43,16.36,14.47S211,80.27,202,80.32Z"/><path class="cls-10" d="M213.4,76,190.27,55.57a13.84,13.84,0,0,0-4.71,10.33c.05,8,7.37,14.52,16.35,14.46A17.17,17.17,0,0,0,213.4,76Z"/><path class="cls-11" d="M29.6,72.2,0,72.37s8.46,11.3,29.69,14.85C29.69,87.22,37,77.25,29.6,72.2Z"/><path class="cls-12" d="M29.54,60.57.08,60.74S8.37,49.4,29.46,45.63C29.46,45.63,36.88,55.46,29.54,60.57Z"/><path class="cls-13" d="M93.11,73.17c-13.86.08-78.86-6.53-78.86-6.53S79.17,59.29,93,59.21s25.11,3,25.13,6.84S107,73.09,93.11,73.17Z"/></g></g></svg>
+					<a class="btn-rm" href="/journal/2019/1/28/real-time-data-exploration-with-slices/">Read More</a>
+				</div>
+			</div>
+		</div>	
+	</div>
+	<div class="top-right-section w-20-l">
+		<div class="tags-section">
+			<p class="tags-title">Filter by Topic</p>
+			<div class="tags-list">
+				<div class="tags-items">
+					<a href="https://blog.lokad.com/">ALL</a>
+				</div>
+				<div class="tags-items">
+					<img class="tags-icons" src="{{ "img/technology.png" | absURL }}">
+					<a href="/journal/tag/technology/">Technology</a>
+				</div>
+				<div class="tags-items">
+					<img class="tags-icons" src="{{ "img/news.png" | absURL }}">
+					<a href="/journal/tag/lokad-news/">Lokad News</a>
+				</div>
+				<div class="tags-items">
+					<img class="tags-icons" src="{{ "img/features.png" | absURL }}">
+					<a href="/journal/tag/features/">Features</a>
+				</div>	
+				<div class="tags-items">
+					<img class="tags-icons" src="{{ "img/integration.png" | absURL }}">
+					<a href="/journal/tag/integrations/">Integrations</a>
+				</div>	
+				<div class="tags-items">
+					<img class="tags-icons" src="{{ "img/supply-chain.png" | absURL }}">
+					<a href="/journal/tag/supply-chain-science/">Supply Chain Science</a>
+				</div>	
+				<div class="tags-items">
+					<img class="tags-icons" src="{{ "img/MRO.png" | absURL }}">
+					<a href="/journal/tag/mro/">MRO</a>
+				</div>	
+				<div class="tags-items">
+					<img class="tags-icons" src="{{ "img/fashion.png" | absURL }}">
+					<a href="/journal/tag/fashion/">Fashion</a>
+				</div>						
+			</div>
+		</div>
+		<div class="searchbar">
+			<article class="nested-copy-line-height lh-copy f4 nested-links mw-100 measure-wide">
+				{{ .Content }}
+				<input id="search" type="text" placeholder="Search..." class="lh-title sans-serif w-100 search-bar">
+				<!--<ul id="results" class=""></ul>-->
+			 </article>
+		</div>
+	</div>
+</div>
+	<div class="center">
+		<section class="posts-container">
+			{{ $pages := where .Paginator.Pages ".Params.skip" "ne" "true" }}
+			{{ if eq .Section "talks" }}
+			  {{ range $pages }}
+				{{ partial "li.html" . }}
+			  {{ end }}
+			{{ else if eq .Section "slides" }}
+			  {{ range where $pages ".Date.Unix" "<" now.Unix }}
+				{{ partial "li.html" . }}
+			  {{ end }}
+			{{ else }}
+			  {{ range where (where $pages ".Date.Unix" "<" now.Unix) "Section" "ne" "slides" }}
+				{{ partial "li.html" . }}
+			  {{ end }}
+			{{ end }}
+		</section>
+	</div> 
+{{ end }}
+
+{{ define "pagination" }}
+<footer class="w-100 sans-serif" role="contentinfo">
+	<nav class="w-third-l pb3 f6 center db" role="navigation">
+    {{ template "_internal/pagination.html" . }}
+	</nav>
+</footer>
+{{ end }}

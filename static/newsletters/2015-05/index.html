@@ -1,0 +1,715 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width"/>
+  <style>
+    /**********************************************
+    * Ink v1.0.5 - Copyright 2013 ZURB Inc        *
+    **********************************************/
+
+    /* Client-specific Styles & Reset */
+
+    #outlook a { padding:0; }
+    body{ width:100% !important; min-width: 100%; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; margin:0; padding:0; }
+
+    .ExternalClass { width:100%; }
+    .ExternalClass, 
+    .ExternalClass p, 
+    .ExternalClass span, 
+    .ExternalClass font, 
+    .ExternalClass td, 
+    .ExternalClass div { line-height: 100%; }
+
+    #backgroundTable { margin:0; padding:0; width:100% !important; line-height: 100% !important; }
+
+    img { outline:none; text-decoration:none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; float: left; clear: both; display: block; }
+    center { width: 100%; min-width: 580px; }
+    a img { border: none; }
+    p { margin: 0 0 0 10px; }
+    table { border-spacing: 0; border-collapse: collapse; }
+    td { word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; }
+    table, tr, td { padding: 0; vertical-align: top; text-align: left; }
+    hr { color: #d7d8d9; background-color: #d7d8d9; height: 1px; border: none; }
+
+    /* Responsive Grid */
+
+    table.body { height: 100%; width: 100%; }
+    table.container {width: 580px; margin: 0 auto; text-align: inherit; }
+    table.row {padding: 0px; width: 100%; position: relative; }
+    table.container table.row {display: block; }
+    td.wrapper {padding: 10px 20px 0px 0px; position: relative; }
+     table.columns,
+    table.column {margin: 0 auto; }
+    table.columns td,
+    table.column td {padding: 0px 0px 10px; }
+
+    table.columns td.sub-columns,
+    table.column td.sub-columns,
+    table.columns td.sub-column,
+    table.column td.sub-column { padding-right: 10px; }
+
+    td.sub-column, td.sub-columns { min-width: 0px; }
+
+    table.row td.last,
+    table.container td.last { padding-right: 0px; }
+
+    table.one { width: 30px; }
+    table.two { width: 80px; }
+    table.three { width: 130px; }
+    table.four { width: 180px; }
+    table.five { width: 230px; }
+    table.six { width: 280px; }
+    table.seven { width: 330px; }
+    table.eight { width: 380px; }
+    table.nine { width: 430px; }
+    table.ten { width: 480px; }
+    table.eleven { width: 530px; }
+    table.twelve { width: 580px; }
+
+    table.one center { min-width: 30px; }
+    table.two center { min-width: 80px; }
+    table.three center { min-width: 130px; }
+    table.four center { min-width: 180px; }
+    table.five center { min-width: 230px; }
+    table.six center { min-width: 280px; }
+    table.seven center { min-width: 330px; }
+    table.eight center { min-width: 380px; }
+    table.nine center { min-width: 430px; }
+    table.ten center { min-width: 480px; }
+    table.eleven center { min-width: 530px; }
+    table.twelve center { min-width: 580px; }
+
+    table.one .panel center { min-width: 10px; }
+    table.two .panel center { min-width: 60px; }
+    table.three .panel center { min-width: 110px; }
+    table.four .panel center { min-width: 160px; }
+    table.five .panel center { min-width: 210px; }
+    table.six .panel center { min-width: 260px; }
+    table.seven .panel center { min-width: 310px; }
+    table.eight .panel center { min-width: 360px; }
+    table.nine .panel center { min-width: 410px; }
+    table.ten .panel center { min-width: 460px; }
+    table.eleven .panel center { min-width: 510px; }
+    table.twelve .panel center { min-width: 560px; }
+
+    .body .columns td.one,
+    .body .column td.one { width: 8.333333%; }
+    .body .columns td.two,
+    .body .column td.two { width: 16.666666%; }
+    .body .columns td.three,
+    .body .column td.three { width: 25%; }
+    .body .columns td.four,
+    .body .column td.four { width: 33.333333%; }
+    .body .columns td.five,
+    .body .column td.five { width: 41.666666%; }
+    .body .columns td.six,
+    .body .column td.six { width: 50%; }
+    .body .columns td.seven,
+    .body .column td.seven { width: 58.333333%; }
+    .body .columns td.eight,
+    .body .column td.eight { width: 66.666666%; }
+    .body .columns td.nine,
+    .body .column td.nine { width: 75%; }
+    .body .columns td.ten,
+    .body .column td.ten { width: 83.333333%; }
+    .body .columns td.eleven,
+    .body .column td.eleven { width: 91.666666%; }
+    .body .columns td.twelve,
+    .body .column td.twelve { width: 100%; }
+
+    td.offset-by-one { padding-left: 50px; }
+    td.offset-by-two { padding-left: 100px; }
+    td.offset-by-three { padding-left: 150px; }
+    td.offset-by-four { padding-left: 200px; }
+    td.offset-by-five { padding-left: 250px; }
+    td.offset-by-six { padding-left: 300px; }
+    td.offset-by-seven { padding-left: 350px; }
+    td.offset-by-eight { padding-left: 400px; }
+    td.offset-by-nine { padding-left: 450px; }
+    td.offset-by-ten { padding-left: 500px; }
+    td.offset-by-eleven { padding-left: 550px; }
+
+    td.expander { visibility: hidden; width: 0px; padding: 0 !important; }
+
+    table.columns .text-pad,
+    table.column .text-pad { padding-left: 10px; padding-right: 10px; }
+
+    table.columns .left-text-pad,
+    table.columns .text-pad-left,
+    table.column .left-text-pad,
+    table.column .text-pad-left {padding-left: 10px; }
+
+    table.columns .right-text-pad,
+    table.columns .text-pad-right,
+    table.column .right-text-pad,
+    table.column .text-pad-right {padding-right: 10px; }
+
+    /* Block Grid */
+
+    .block-grid { width: 100%; max-width: 580px; }
+
+    .block-grid td { display: inline-block; padding:10px; }
+    .two-up td {width:270px; }
+    .three-up td {width:173px; }
+    .four-up td {width:125px; }
+    .five-up td {width:96px; }
+    .six-up td {width:76px; }
+    .seven-up td {width:62px; }
+    .eight-up td { width:52px; }
+
+    /* Alignment & Visibility Classes */
+
+    table.center, td.center { text-align: center; }
+
+    h1.center,
+    h2.center,
+    h3.center,
+    h4.center,
+    h5.center,
+    h6.center,
+    p.center { text-align: center; }
+
+    span.center { display: block; width: 100%; text-align: center; }
+
+    img.center { margin: 0 auto; float: none; }
+
+    .justify p { text-align: justify; }
+
+    .show-for-small,
+    .hide-for-desktop { display: none; }
+
+    /* Typography */
+
+    body, table.body, h1, h2, h3, h4, h5, h6, p, td { 
+      color: #222222;
+      font-family: "Helvetica", "Arial", sans-serif; 
+      font-weight: normal; 
+      padding:0; 
+      margin: 0;
+      text-align: left; 
+      line-height: 1.3;
+    }
+	
+    h1, h2, h3, h4, h5, h6 {
+      word-break: normal;
+      line-height: 1.1;
+    }
+
+    h1 {font-size: 40px;}
+    h2 {font-size: 36px;}
+    h3 {font-size: 32px;}
+    h4 {font-size: 28px;}
+    h5 {font-size: 24px;}
+    h6 {font-size: 20px;}
+    body, table.body, p {font-size: 14px;line-height:19px;}
+    td {font-size: 14px; }
+
+
+    p { margin-bottom: 10px; line-height: 20px; }
+      p.small { font-size: 11px; line-height:15px; }
+      p.lead, p.lede, p.leed { font-size: 18px; line-height:21px; }
+
+    blockquote { 
+      display:block; 
+      background:#f7f8f9;
+      font-family: Georgia, "Times New Roman", Times, Baskerville, serif; 
+      text-align: left;
+      margin:0px 0 20px 0;
+      padding:10px!important;
+      font-size: 16px; 
+      font-style: italic;
+      color:#666666;
+    }
+
+    small { font-size: 11px; }
+
+    a { color: #CC333F; text-decoration: none; }
+    a:hover { color: #9E2730 !important; text-decoration: underline; }
+    a:active { color: #E92C30 !important; }
+    a:visited { color: #D75E67 !important; }
+
+    h1 a, 
+    h2 a, 
+    h3 a, 
+    h4 a, 
+    h5 a, 
+    h6 a { color: #CC333F; }
+
+    h1 a:active, 
+    h2 a:active,  
+    h3 a:active, 
+    h4 a:active, 
+    h5 a:active, 
+    h6 a:active { color: #E92C30 !important; }
+
+    h1 a:visited, 
+    h2 a:visited,  
+    h3 a:visited, 
+    h4 a:visited, 
+    h5 a:visited, 
+    h6 a:visited { color: #D75E67 !important; }
+
+    /* Panels */
+    .panel {background: #f5f6f7; border: none; padding: 10px !important; }
+    
+    .sub-grid table {width: 100%; }
+    .sub-grid td.sub-columns {padding-bottom: 0; }
+
+    /* Buttons */
+
+    table.button,
+    table.tiny-button,
+    table.small-button,
+    table.medium-button,
+    table.large-button {width: 100%; overflow: hidden; }
+
+    table.button td,
+    table.tiny-button td,
+    table.small-button td,
+    table.medium-button td,
+    table.large-button td {
+      display: block;
+      width: auto !important;
+      text-align: center;
+      background: #CC333F;
+      border: none;
+      color: #ffffff;
+      padding: 8px 0;
+      -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;
+    }
+
+    table.tiny-button td {padding: 5px 0 4px; }
+    table.small-button td {padding: 8px 0 7px; }
+    table.medium-button td {padding: 12px 0 10px; }
+    table.large-button td {padding: 21px 0 18px; }
+
+    table.button td a,
+    table.tiny-button td a,
+    table.small-button td a,
+    table.medium-button td a,
+    table.large-button td a {font-weight: bold; text-decoration: none; font-family: Helvetica, Arial, sans-serif; color: #ffffff; font-size: 14px; }
+
+    table.tiny-button td a { font-size: 12px; font-weight: normal; }
+    table.small-button td a {font-size: 16px; }
+    table.medium-button td a {font-size: 20px; }
+    table.large-button td a {font-size: 24px; }
+    
+    table.button:hover td,
+    table.button:visited td,
+    table.button:active td {background: #CC333F !important; }
+    
+    table.button:hover td a, 
+    table.button:visited td a,
+    table.button:active td a {color: #fff !important; }
+
+    table.button:hover td,
+    table.tiny-button:hover td,
+    table.small-button:hover td,
+    table.medium-button:hover td,
+    table.large-button:hover td {background: #E82D3A !important; }
+
+    table.button:hover td a,
+    table.button:active td a,
+    table.button td a:visited,
+    table.tiny-button:hover td a,
+    table.tiny-button:active td a,
+    table.tiny-button td a:visited,
+    table.small-button:hover td a,
+    table.small-button:active td a,
+    table.small-button td a:visited,
+    table.medium-button:hover td a,
+    table.medium-button:active td a,
+    table.medium-button td a:visited,
+    table.large-button:hover td a,
+    table.large-button:active td a,
+    table.large-button td a:visited {color: #ffffff !important; }
+
+    table.secondary td {background: #e9e9e9; border-color: #d0d0d0; color: #555; }
+    table.secondary td a {color: #555; }
+
+    table.secondary:hover td {background: #d0d0d0 !important; color: #555; }
+    table.secondary:hover td a,
+    table.secondary td a:visited,
+    table.secondary:active td a { color: #555 !important; }
+
+    table.success td {background: #5da423; border-color: #457a1a; }
+    table.success:hover td {background: #457a1a !important; }
+    table.alert td {background: #c60f13; border-color: #970b0e; }
+    table.alert:hover td {background: #970b0e !important; }
+    table.radius td {-webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; }
+    table.round td {-webkit-border-radius: 500px; -moz-border-radius: 500px; border-radius: 500px; }
+
+    /* Outlook First */
+    body.outlook p { display: inline !important; }
+
+    /*  Media Queries */
+    @media only screen and (max-width: 600px) {
+
+      /* Typography - Mobile*/
+      h1 {font-size: 24px;}
+      h2 {font-size: 24px;}
+      h3 {font-size: 22px;}
+      h4 {font-size: 18px; font-weight: bold;}
+      h5 {font-size: 14px; font-weight: bold;}
+      h6 {font-size: 13px; font-weight: bold;}
+
+      table[class="body"] .center-for-small { text-align: center; }
+
+      table[class="body"] img { width: auto !important; height: auto !important; }
+      table[class="body"] center { min-width: 0 !important; }
+
+      table[class="body"] .container { width: 95% !important; }
+      table[class="body"] .row {width: 100% !important; display: block !important; }
+      table[class="body"] .wrapper {display: block !important; padding-right: 0 !important; }
+      table[class="body"] .columns,
+      table[class="body"] .column { table-layout: fixed !important; float: none !important; width: 100% !important; padding-right: 0px !important; padding-left: 0px !important; display: block !important; }
+
+      table[class="body"] .wrapper.first .columns,
+      table[class="body"] .wrapper.first .column { display: table !important; }
+
+      table[class="body"] table.columns td, 
+      table[class="body"] table.column td {width: 100% !important; }
+
+      table[class="body"] .columns td.one,
+      table[class="body"] .column td.one { width: 8.333333% !important; }
+      table[class="body"] .columns td.two,
+      table[class="body"] .column td.two { width: 16.666666% !important; }
+      table[class="body"] .columns td.three,
+      table[class="body"] .column td.three { width: 25% !important; }
+      table[class="body"] .columns td.four,
+      table[class="body"] .column td.four { width: 33.333333% !important; }
+      table[class="body"] .columns td.five,
+      table[class="body"] .column td.five { width: 41.666666% !important; }
+      table[class="body"] .columns td.six,
+      table[class="body"] .column td.six { width: 50% !important; }
+      table[class="body"] .columns td.seven,
+      table[class="body"] .column td.seven { width: 58.333333% !important; }
+      table[class="body"] .columns td.eight,
+      table[class="body"] .column td.eight { width: 66.666666% !important; }
+      table[class="body"] .columns td.nine,
+      table[class="body"] .column td.nine { width: 75% !important; }
+      table[class="body"] .columns td.ten,
+      table[class="body"] .column td.ten { width: 83.333333% !important; }
+      table[class="body"] .columns td.eleven,
+      table[class="body"] .column td.eleven { width: 91.666666% !important; }
+      table[class="body"] .columns td.twelve,
+      table[class="body"] .column td.twelve { width: 100% !important; }
+
+      table[class="body"] td.offset-by-one,
+      table[class="body"] td.offset-by-two,
+      table[class="body"] td.offset-by-three,
+      table[class="body"] td.offset-by-four,
+      table[class="body"] td.offset-by-five,
+      table[class="body"] td.offset-by-six,
+      table[class="body"] td.offset-by-seven,
+      table[class="body"] td.offset-by-eight,
+      table[class="body"] td.offset-by-nine,
+      table[class="body"] td.offset-by-ten,
+      table[class="body"] td.offset-by-eleven { padding-left: 0 !important; }
+
+       table[class="body"] table.columns td.expander { width: 1px !important; }
+      table[class="body"] .right-text-pad,
+      table[class="body"] .text-pad-right {padding-left: 10px !important; }
+      table[class="body"] .left-text-pad,
+      table[class="body"] .text-pad-left {padding-right: 10px !important; }
+      table[class="body"] .hide-for-small,
+      table[class="body"] .show-for-desktop {display: none !important; }
+      table[class="body"] .show-for-small,
+      table[class="body"] .hide-for-desktop {display: inherit !important; }
+    }
+
+  </style>
+
+  <style>
+
+    table.columns td.nav td { padding:5px 0; font-size:12px; line-height:15px; }
+    table.columns td.nav hr { margin:5px 0; }
+
+    .template-label { color: #999999; font-weight: normal; font-size: 11px; line-height:13px; }
+    .callout .panel { background: #ECF8FF; border-color: #b9e5ff; }
+    .header { background: #ffffff; }
+
+    .footer { margin-bottom:30px; }
+    .footer .wrapper {background: #2B2B2B; padding:18px 0 8px 0; }
+    .footer td, 
+    .footer p { font-size:11px; color:#cccccc; text-align: center; margin-bottom:0px; line-height:15px; }
+    .footer h5 {padding-bottom: 10px; }
+
+    table.columns .text-pad {padding-left: 10px; padding-right: 10px; }
+     table.columns .left-text-pad {padding-left: 10px; }
+    table.columns .right-text-pad {padding-right: 10px; }
+
+    @media only screen and (max-width: 600px) {
+
+      table[class="body"] .right-text-pad {padding-left: 10px !important; }
+      table[class="body"] .left-text-pad { padding-right: 10px !important; }
+
+    }
+
+  </style>
+</head>
+<body>
+  <table class="body">
+    <tr>
+      <td class="center" align="center" valign="top">
+        <center>
+          <table class="container">
+            <tr>
+              <td>
+
+              <!-- content start -->
+              <table class="row">
+                <tr>
+                  <td class="wrapper last">
+
+                    <table class="twelve columns">
+                      <tr>
+                        <td class="center">
+                            <p class="template-label">
+                              You're receiving this newsletter because you are registered with Lokad.com.
+                              Not interested anymore? <unsubscribe>Unsubscribe</unsubscribe>. <br />
+                              Having trouble reading this email? <webversion>View it in your browser</webversion>.
+                            </p>
+                            <img class="" src="newsletter_logo.png">
+                        </td>
+                        <td class="expander"></td>
+                      </tr>
+                    </table>
+
+                  </td>
+                </tr>
+              </table>
+
+              <table class="row">
+                <tr>
+                  <td class="wrapper">
+
+                    <!-- Sidebar - in this issue -->
+                    <table class="four columns">
+                      <tr>
+                        <td class="panel nav">
+                          <h6>In this issue</h6>
+                          <br />
+                          <table>
+                              <tr>
+                                <td>
+                                  <a href="#editorial">Editorial</a>
+                                </td>
+                              </tr>
+                            </table>
+                            <hr>
+                            <table>
+                              <tr>
+                                <td>
+                                  <a href="#grid">Quantile Grids</a>
+                                </td>
+                              </tr>
+                            </table>
+                            <hr>
+                            <table>
+                              <tr>
+                                <td>
+                                  <a href="#unification">Unified apps and pricing</a>
+                                </td>
+                              </tr>
+                            </table>
+                            <hr>
+                            <table>
+                              <tr>
+                                <td>
+                                  <a href="#analytics">Commerce Analytics</a>
+                                </td>
+                              </tr>
+                            </table>
+							<hr>
+                            <table>
+                              <tr>
+                                <td>
+                                  <a href="#integrations">More integrations</a>
+                                </td>
+                              </tr>
+                            </table>
+							<hr>
+                            <table>
+                              <tr>
+                                <td>
+                                  <a href="#intelligence">Competitive price monitoring</a>
+                                </td>
+                              </tr>
+                            </table>
+                        </td>
+                        <td class="expander"></td>
+                      </tr>
+                    </table>
+                    <br>
+                    
+                    <!-- More news -->
+                    <table class="four columns">
+                      <tr>
+                        <td class="panel">
+                          <h6>More News</h6>
+                          <br />
+                          <table>
+                              <tr>
+                                <td>
+								  <a href="http://blog.lokad.com/journal/2015/4/22/currency-exchange-rates-with-envision">Currency exchange rates with Envision</a>
+                                  <p class="small">Merchants frequently buy with one currency and sell using another. As online commerce is becoming more and more a global commerce, it's not unusual to encounter merchants who are buying in multiple currencies, and selling in multiple currencies as well.</p>
+								  <hr>
+								  <a href="http://blog.lokad.com/journal/2015/4/9/in-the-end-there-can-be-only-one">In the end, there can be only one</a>
+                                  <p class="small">When it comes to the optimization of stock levels, or prices, or assortments … merchants need to look at many business performance indicators to make the correct operational decisions. However, numerical optimization is deeply counter-intuitive.</p>
+								  <hr>
+								  <a href="http://blog.lokad.com/journal/2015/3/26/document-your-folders-with-markdown">Document your folders with MarkDown</a>
+                                  <p class="small">Whenever Lokad produces a dashboard or a forecasting report, under the hood, the input data is stored as tabular files within your Lokad account. Those files are accessible through the Files tab of the top navbar.</p>
+								  <hr>
+								  <a href="http://blog.lokad.com/journal/2015/2/10/advance-scheduling-of-your-forecasting-reports">Advance scheduling of your forecasting reports</a>
+                                  <p class="small">By using a WebCron - a simple web-based task scheduler - it's now straightforward to schedule the executions of our reports to both refresh the input data and to regenerated the reports according to a daily or weekly schedule.</p>
+								  <hr>
+                                  <a href="http://blog.lokad.com/journal/2015/2/4/local-management-of-the-inventory-settings">Local management of inventory settings</a>
+                                  <p class="small">As far as data management is concerned, Lokad's philosophy is to keep data centralized in the original business app whenever this is possible. Yet, it is not always possible - or practical - to stick to this principle; so we need to adjust.</p>
+								  <hr>
+                                  <a href="http://blog.lokad.com/journal/2014/11/4/inventory-forecasting-for-aerospace">Inventory forecasting for Aerospace</a>
+                                  <p class="small">While the core focus of Lokad’s activity has been on commerce since the very beginning, over the years, we have also delivered forecasts and optimized stock levels for a variety of other verticals such as aerospace.</p>
+                                </td>
+                              </tr>
+                          </table>
+                          
+                        </td>
+                        <td class="expander"></td>
+                      </tr>
+                    </table>
+
+                  </td>
+                  <td class="wrapper last">
+                    
+                    <!-- Main content -->
+                    <table class="eight columns justify">
+                      <tr>
+                        <td>
+
+                          <a name="editorial" id="editorial"></a>
+						  <h5>Editorial </h5>
+                          <hr>
+                          <p>
+                            <img src="joannes-vermorel.jpg" style="float:right;margin-left:25px" alt="Portrait of Joannes Vermorel"> Lokad was founded with the ambition of delivering better forecasts to companies of any size. With the release of <a href="#grids">quantile grids</a>, the third generation of our forecasting engine, we remain very much in line with this vision as  we refine, yet again, the state of the art for inventory forecasting. However, statistical forecasting alone does not produce better reordering decisions, and the extra technological capabilities that we have introduced over the years have been extensively redesigned to work much better when <a href="#unification">used together</a>. In particular, our <a href="#analytics">commerce analytics</a> capabilities are now blending seamlessly with inventory forecasting. However, Lokad is far from being the only fast growing commerce-centric software company out there. Our <a href="#integrations">integration ecosystem</a> is expanding to support more great commerce management apps. Finally, thanks to our first integration with a <a href="#intelligence">competitive price monitoring app</a>, we hope that Lokad-powered merchants  will not just outservice their competition - in terms of inventory - but will outprice their competition as well.</p>
+						  <p>
+						   <i>Joannes Vermorel, Founder of Lokad</i>
+						  </p>
+
+                          <br>
+                          
+                          <a id="grids"></a>
+                          <h5>Quantile Grids</h5>
+                          <hr>
+                          <p>In February 2015, we unveiled the third generation of our forecasting technology based on quantile grids. In layman’s terms, quantile grids demonstrate an unprecedented level of performance which means that your company can service more clients, more reliably, with less inventory.</p>
+						  
+						  <p><img src="grid.jpg"></p>
+						  
+						  <p>Unlike existing forecasting methods available on the market, quantile grids do not provide just one demand forecast per product, but rather provide the entire probability distribution for (nearly) all possible futures. Quantile grids are made possible through the combination of Machine Learning, Big Data, Cloud Computing plus some commerce-driven insights.</p>
+						 						  
+                          <p>With quantile grids, it also becomes possible to design purchase prioritization strategies that deeply embrace both the opportunities and the risks associated with the ownership of inventory. Quantile grids reframe the supply challenge by lowering purchase errors measured in dollars instead of merely lowering the arbitrary percentages (classic viewpoint). In particular, quantile grids are especially good at accommodating supply chain constraints such as container shipments, minimum order quantities, expiry dates, etc.</p>
+						  
+						  <p>Read more about <a href="http://blog.lokad.com/journal/2015/2/27/forecasting-30-with-quantile-grids ">quantile grids</a>.</p>
+
+                          <br>
+                          
+						  <a id="unification"></a>
+                          <h5>Unified apps and pricing</h5>
+						  <hr>
+						  <p>Lokad’s capabilities have been growing through the launch of independent apps named Salescast, Priceforge and BigFiles, which were designed to  deal with inventory forecasting, pricing optimization and file storage respectively.  While Lokad becoming more powerful was a good thing, user experience had become quite fragmented; and leveraging all these apps simultaneously was not a trivial task.</p>
+						  
+						  <p><img src="unified.png"></p>
+						  
+						  <p>As a result, in late 2014, we decided to merge all the aforementioned apps to be simply known as “Lokad”. Under the hood, we started to revise everything in our system so that Lokad would behave as a single app where all the different parts are meant to work together. As of the beginning of the second quarter  2015, this process is nearly complete. In just a few clicks, it is now  possible to import your business data and to generate built-in reports aimed at  optimizing stocks or prices.</p>
+						  
+                          <p>Our pricing has been revised too. We now have <a href="https://www.lokad.com/pricing">flat monthly service plans</a> that are based on annual business sales volume. Lokad remains entirely free for businesses below the $450,000 revenue mark, and above that figure our basic plan starts at $150 per month. All features are included in every plan.</p>
+
+                          <br>
+                          
+						  <a id="analytics"></a>
+                          <h5>Commerce analytics</h5>
+						  <hr>
+                          <p>Commerce optimization is a game of numbers, and Lokad now has more capabilities than ever to crunch those numbers. Lokad features power dashboards that can perform any calculation you could think of in Excel, except that all the data plumbing is taken care of. In order to achieve this, we have developed our own tiny domain-specific programming language named Envision. This language is accessible to anyone with decent Excel skills. All the dashboards delivered by Lokad are actually implemented through this language.</p>
+						  
+                          <p><img src="analytics.png" style="margin-bottom:10px"></p>
+						  
+						  <p>In fact, we have realized that most of the fastest growing merchants do not dodge but rather embrace "programmability". Without smart automation, it is  not possible to remain business-smart and highly productive when handling thousands of products, thousands of clients, dozens of suppliers, etc.</p>
+						  
+                          <p>In Lokad’s new <a href="https://www.lokad.com/commerce-analytics">Commerce Analytics section</a>, you will find extensive guides and tutorials to help you get started with Envision. All the integrations that we support also get their own set of built-in dashboards that you can use out of the box, and possibly extend as you see fit.</p> 
+						  
+						  <br>
+						  
+						  <a id="integrations"></a>
+                          <h5>More integrations</h5>
+						  <hr>
+                          <p>Lokad is already natively supporting Brightpearl, Linnworks, Tradegecko and QuickBooks (through Webgility). Over the last few months, we have extensively revised and improved these connectors. Simply put, instead of merely retrieving just enough data to forecast inventory, we are now retrieving a much wider range of data to power all kinds of interesting commerce analytics.</p>
+						  
+                          <p>The connector list is getting longer too. We are very happy to count <a href="https://www.lokad.com/#unleashed">Unleashed Software</a>, <a href="https://www.lokad.com/#vend">Vend</a> and <a href="https://www.lokad.com/#skuvault">SkuVault</a> among our latest integrations. Unleashed and SkuVault are both online inventory management software with extensive capabilities, and Vend is a super smooth POS (Point of Sale) software.</p>
+						  
+                          <p>The Lokad team is also actively developing one additional connector for StitchLabs, another really cool app. Don’t hesitate to contact us (you can reply to this email) if you wish to be among the first merchants to benefit from this new connector.</p> 
+						  
+						  <br>
+						  
+						  <a id="intelligence"></a>
+                          <h5>Competitive price monitoring</h5>
+						  <hr>
+                          <p>Up until now, merchants using Lokad for pricing optimization were typically bringing their own data as far as competitor prices were concerned; Lokad carried out the  pricing optimization, but not the monitoring of competitors. Lokad features a file-sharing service with FTP/SFTP access, so it is  typically “simple enough” to import this type of data, however, the whole process felt a bit clunky to us.</p>
+						  
+                          <p><img src="competera.png" style="margin-bottom:10px"></p>
+						  
+						  <p>Consequently, we decided that Lokad had to do better. Thanks to the support of the <a href="http://competera.net/">Competera</a> team, we now have a built-in integration for a competitive price monitoring app.</p>
+						  
+						  <p>Provide Competera with the domain names of your competitors, the domain name of your own store, and Competera will begin extracting prices right from the web. Competera takes care of generating a price matrix where each one of your products is matched with the prices of your competitors. Competera works pretty much like Lokad: no software to install and a monthly subscription. You can get a free trial and a demo as well.</p>
+						  
+                          <p>By combining Competera and Lokad, it becomes possible:</p>
+						  <ul>
+							<li>to stop wasting time with manual and infrequent competitor surveys</li>
+							<li>to monitor how your market share reacts to competitors' pricing moves</li>
+							<li>to design pricing strategies that leverage both in-house data and competitors' data</li>
+							<li>to fine-tune the trade-off between profitability and growth</li>
+						  </ul>
+ 
+						  <p>The Competera team is here to deliver all the support your company needs as far as monitoring your competition is concerned. In turn, Lokad is here to turn this data into better margins, better stocks and more growth depending on your strategic targets.</p>
+                        </td>
+                        <td class="expander"></td>
+                      </tr>
+                    </table>
+
+                  </td>
+                </tr>
+              </table>
+              
+              <br>
+              
+              <!-- Footer -->
+              <table class="row footer">
+                <tr>
+                  <td class="wrapper last">
+
+                    <table class="twelve columns">
+                      <tr>
+                        <td align="center">
+                          <center>
+                            <p>Lokad and the Lokad Logo are registered trademarks of Lokad SAS.</p>
+                            <p>Lokad SAS - 70 rue Lemercier, Paris, France, +1 (716) 989 6531 / +33 1 75 57 47 63</p>
+                          </center>
+                        </td>
+                        <td class="expander"></td>
+                      </tr>
+                    </table>
+
+                  </td>
+                </tr>
+              </table>
+
+              <!-- container end below -->
+              </td>
+            </tr>
+          </table>
+
+        </center>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

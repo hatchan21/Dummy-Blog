@@ -1,0 +1,54 @@
+{{ define "title" }}{{ .Section | title }} &bullet; {{ .Site.Title }}{{ end }}
+{{ define "main" }}
+<!--{{- $hdr := cond (or (in .Site.Params.classes "feature-nohdr") (in .Params.classes "feature-nohdr")) false true -}}-->
+<header class="cover bg-top single-header" {{ if $hdr }}style="background-image: url('{{ absURL (default "img/banner_blog_articles.png" .Params.headerimage) }}'); background-position: center;"{{ end }}>
+	<div class="{{ cond $hdr "bb bt" "" }}">
+		<div id="hdr" class="tc-l {{ cond $hdr "pv4-ns pv5-l" "" }} pv2 ph3 ph4-ns">
+			<h1 class="{{ cond $hdr "near-white mt1-ns" "" }} f2 fw3 mb0 mt0 lh-title main-title">{{ cond (eq .Site.Params.titlecase true) (.Title | title | markdownify) (.Title | markdownify) }}</h1>
+		</div>
+	</div>
+</header>
+<a href="javascript:" id="return-to-top"><i class="icon-chevron-up"></i></a>
+<script>
+	// ===== Scroll to Top ==== 
+$(window).scroll(function() {
+    if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
+        $('#return-to-top').fadeIn(200);    // Fade in the arrow
+    } else {
+        $('#return-to-top').fadeOut(200);   // Else fade out the arrow
+    }
+});
+$('#return-to-top').click(function() {      // When arrow is clicked
+    $('body,html').animate({
+        scrollTop : 0                       // Scroll to top of body
+    }, 500);
+});	
+</script>
+<div class="pa3 pa4-ns center">
+  <section class="list-section">
+  <!-- list all talks; list non-future slides; else list things that are not future and not slides -->
+  {{ $pages := where .Paginator.Pages ".Params.skip" "ne" "true" }}
+  {{ if eq .Section "talks" }}
+    {{ range $pages }}
+      {{ partial "li.html" . }}
+    {{ end }}
+  {{ else if eq .Section "slides" }}
+    {{ range where $pages ".Date.Unix" "<" now.Unix }}
+      {{ partial "li.html" . }}
+    {{ end }}
+  {{ else }}
+    {{ range where (where $pages ".Date.Unix" "<" now.Unix) "Section" "ne" "slides" }}
+      {{ partial "li.html" . }}
+    {{ end }}
+  {{ end }}
+  </section>
+</div>
+{{ end }}
+
+{{ define "pagination" }}
+<footer class="w-100 sans-serif" role="contentinfo">
+	<nav class="w-third-l pb3 f6 center db" role="navigation">
+    {{ template "_internal/pagination.html" . }}
+	</nav>
+</footer>
+{{ end }}

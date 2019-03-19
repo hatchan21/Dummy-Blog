@@ -1,0 +1,42 @@
+baseURL = ""
+languageCode = "en-us"
+title = "Dummy Blog"
+theme = "story"
+paginate = 4
+enableRobotsTXT = true
+summaryLength = 10
+
+## URLs Settings
+#uglyurls = true
+[permalinks]
+  journal = "journal/:year/:month/:day/:filename"
+  tags = "journal/tag/:title"
+  page = ":filename"
+  #categories = "journal/category/:title"
+
+## Hugo Built-in Features
+# disqusShortname = "your-disqus-shortname"
+# googleAnalytics = "your-google-analytics-id"
+[outputs]
+home = [ "RSS", "HTML"]
+
+[outputFormats]
+[outputFormats.RSS]
+mediatype = "application/rss"
+baseName = "rss"
+
+
+## Site Settings
+[params]
+    author = "Hatchan"
+    title = "Dummy blog"
+    description = "dummy blog content"
+    dateformat = "Jan 2, 2006"
+    highlightjs = true
+	summaryLength = 10
+	hasCJKLanguage = true
+    # layoutReverse = true
+    # themeColor = "theme-base-0f"
+    # highlightjsstyle = "github"
+    # please choose either GraphComment or Disqus
+    # GraphCommentId = "your-graph-comment-id" 

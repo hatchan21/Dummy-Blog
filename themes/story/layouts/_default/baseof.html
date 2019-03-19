@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>{{ block "title" . }}{{ .Site.Title }}{{ end }}</title>
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="{{ "index.xml" | absURL }}">
+		<link rel="canonical" href="{{ .Permalink }}">
+		<!-- the Story logo is a square with rounded corners interlocked with a section symbol in Bodoni 72 Book font -->
+		<link rel="shortcut icon" type="image/png" href="{{ "favicon.ico" | absURL }}">
+		<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+		{{ with .Description }}<meta name="description" content="{{. | markdownify }}">{{ end }}
+		{{ with .Keywords }}<meta name="keywords" content="{{.}}">{{ end }}
+		{{ .Hugo.Generator }}
+
+		{{ block "social" . }}
+		{{ end }}
+
+		{{ block "layout" . }}
+		<link rel="stylesheet" href="{{ "css/tachyons.min.css" | absURL }}" />
+		{{- if .Site.Params.less -}}
+		<link rel="stylesheet/less" type="text/css" href="{{ "css/story.less" | absURL }}" />
+		<link rel="stylesheet/less" type="text/css" href="{{ "css/descartes.less" | absURL }}" />
+		<script type="text/javascript" src="{{ "js/less.min.js" | absURL }}"></script>
+		{{ else }}
+		<link rel="stylesheet" href="{{ "css/story.css" | absURL }}" />
+		<link rel="stylesheet" href="{{ "css/descartes.css" | absURL }}" />
+		{{ end }}
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+		{{ end }}
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		{{ if or (in .Site.Params.classes "feature-highlight") (in .Params.classes "feature-highlight") -}}
+			{{- if not (or (in .Site.Params.classes "feature-nohighlight") (in .Params.classes "feature-nohighlight") ) -}}
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+			{{- end -}}
+		{{- end -}}
+		{{ if or (in .Site.Params.classes "feature-math") (in .Params.classes "feature-math") -}}
+			{{- if not (or (in .Site.Params.classes "feature-nomath") (in .Params.classes "feature-nomath") ) -}}
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.9.0/dist/katex.min.css" integrity="sha384-TEMocfGvRuD1rIAacqrknm5BQZ7W7uWitoih+jMNFXQIbNl16bO8OZmylH/Vi/Ei" crossorigin="anonymous">
+		<script src="https://cdn.jsdelivr.net/npm/katex@0.9.0/dist/katex.min.js" integrity="sha384-jmxIlussZWB7qCuB+PgKG1uLjjxbVVIayPJwi6cG6Zb4YKq0JIw+OMnkkEC7kYCq" crossorigin="anonymous"></script>
+		<script src="{{ "js/auto-render.min.js" | absURL }}"></script> <!-- for KaTeX -->
+			{{- end -}}
+		{{- end -}}
+		{{ if or (in .Site.Params.classes "feature-music") (in .Params.classes "feature-music") -}}
+			{{- if not (or (in .Site.Params.classes "feature-nomusic") (in .Params.classes "feature-nomusic") ) -}}
+		<script src="{{ "js/abcjs_basic_5.6.3-min.js" | absURL }}"></script>
+			{{- end -}}
+		{{- end -}}
+		{{ with .Site.Params.head }}{{ range . }}
+		{{ . | safeHTML }}{{ end }}{{ end }}
+		<script src="{{ "js/story.js" | absURL }}"></script>
+
+	</head>
+	<body class="ma0 bg-white {{ with .Section }}section-{{ . }}{{ end }} page-kind-{{ .Kind }} is-page-{{ .IsPage }} {{ with .Site.Params.classes }}{{ range . }} {{ . }}{{ end }}{{ end }}{{ with .Params.classes }}{{ range . }} {{ . }}{{ end }}{{ end }}">
+		{{ block "header" . }}
+		<div id="HeaderDiv">
+		<div class="container" data-swiftype-index="false"><a class="head-logo" href="https://www.lokad.com/"><img src="{{ "img/logo.svg" | absURL }}"></a>
+			<div class="head-collapse">
+			  <div class="topnav">
+				<div class="topnav-items">
+				  <div class="topnav-item"><a class="topnav-link" href="https://www.youtube.com/LokadTV">
+					<svg viewBox="0 0 23 23" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.41421" style="margin-top:-7px; opacity:.8;"><path d="M20.284,23.158l-17.58,0c-1.501,0 -2.72,-1.219 -2.72,-2.72l0,-10.562c0,-1.502 1.219,-2.721 2.72,-2.721l7.489,0l0.04,-0.04l-2.859,-2.858c-0.355,-0.355 -0.355,-0.931 0,-1.286c0.355,-0.355 0.932,-0.355 1.287,0l2.858,2.858l5.574,-5.574c0.355,-0.354 0.931,-0.354 1.286,0c0.355,0.355 0.355,0.932 0,1.287l-5.574,5.573l0.04,0.04l7.439,0c1.502,0 2.721,1.219 2.721,2.721l0,10.562c0,1.501 -1.219,2.72 -2.721,2.72Zm-3.426,-8.25c0,-6.469 -1.929,-6.058 -7.753,-6.042c-5.863,0.016 -7.352,-0.071 -7.352,5.863c0,6.648 1.32,6.543 6.973,6.543c6.01,0 8.132,0.848 8.132,-6.364Zm3.028,0.063c0.763,0 1.383,0.619 1.383,1.383c0,0.763 -0.62,1.383 -1.383,1.383c-0.764,0 -1.384,-0.62 -1.384,-1.383c0,-0.764 0.62,-1.383 1.384,-1.383Zm0,-3.515c0.763,0 1.383,0.62 1.383,1.383c0,0.764 -0.62,1.384 -1.383,1.384c-0.764,0 -1.384,-0.62 -1.384,-1.384c0,-0.763 0.62,-1.383 1.384,-1.383Z" /></svg>LokadTV</a></div>
+				  <div class="topnav-item"><a class="topnav-link" href="/contact">
+					  <svg viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M4.17.65c1.21.07 2.106 1.99 3.165 3.38.624.87-.182 1.82-1.254 3.045-.825 1.02.89 1.935 2.086 3.315 0 0 1.054 1.02 1.51 1.287.36.21.86.285 1.2-.025.5-.5.738-1.07 1.513-1.49 1.18-.635 2.866 1.002 4.468 2.078 1.767 1.242-1.622 5.015-4.364 4.81-4.105-.307-7.533-4.263-9.87-7.012C1.27 8.444.04 6.383.684 4.326c.444-1.415 1.47-2.53 2.72-3.45.227-.15.488-.23.767-.227zm-.06 1c-.74.062-1.53 1.2-2.162 2.29C.585 6.3 3.484 9.757 5.704 11.844c2.333 2.195 5.15 4.984 7.78 4.13 1.215-.395 2.356-1.362 2.91-2.587.045-.112.005-.236-.087-.31-1-.702-1.98-1.435-3.04-2.04-.576-.288-1.7 1.338-1.7 1.338-.82.752-2.13.494-2.925-.22-1.022-.933-2.033-1.893-3.01-2.9-.865-.937-.913-2.188.534-3.75.268-.285.55-.594.376-.864-.71-.992-1.42-1.99-2.22-2.91-.05-.046-.105-.073-.172-.08h-.04z"/></svg>Contact</a></div>
+				  <div class="topnav-item"><a class="topnav-link" href="https://hub.lokad.com">Login</a></div>
+				</div>
+			  </div>
+			  <div class="mainnav">
+				<ul class="mainnav-items">
+				  <li id="nv1" class="mainnav-item"><a class="mainnav-link" href="https://www.lokad.com/features">Features</a></li>
+				  <li id="nv2" class="mainnav-item"><a class="mainnav-link" href="https://www.lokad.com/integrations">Integrations</a></li>
+				  <li id="nv3" class="mainnav-item"><a class="mainnav-link" href="https://www.lokad.com/solutions">Solutions</a></li>
+				  <li id="nv4" class="mainnav-item"><a class="mainnav-link" href="https://www.lokad.com/pricing">Pricing</a></li>
+				  <li id="nv5" class="mainnav-item"><a class="mainnav-link" href="https://www.lokad.com/learn">Learn</a></li>
+				  <li id="nv6" class="mainnav-item"><a class="mainnav-link" href="https://www.lokad.com/aboutus">Company</a></li>
+				  <li id="nv7" class="mainnav-item mt-2 mt-lg-0"><a class="btn btn-primary" href="https://hub.lokad.com/Register">TRY FOR FREE</a></li>
+				</ul>
+			  </div>
+			</div>
+		  </div>
+		</div>
+		<!--
+		You can set the title and header image in the "title/image" parameters of
+		the _index.md for the section.  For a post, you can set the header image
+		with the "image" parameter in front matter. You can disable these
+		behaviors with the feature-nohdr class in the site config file or front
+		matter of an individual post.
+		--> 
+	
+		{{ end }}
+		<main role="main">
+		{{ block "main" . }}
+		{{ end }}
+		</main>
+		{{ block "pagination" . }}{{ end }}
+		{{ block "footer" . }}
+		<footer class="footer">
+				<div class="footer-container" data-swiftype-index="false">
+						<div class="row">
+						  <div class="col-md-4 col-lg-3">
+							<div class="footer-left">
+							  <div class="footer-logo"><img src="{{ "img/footer-logo.png" | absURL }}"></div>
+							  <ul class="footer-contacts">
+								<li class="footer-contacts-address">
+								  <svg viewBox="0 0 22 41" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M9.93 2.874c0-1.45.002-2.338.002-2.344 0 0 .262-.47.94-.47.71 0 .99.47.99.47s.004.89.004 2.344h1.063V3.5l-1.065.735c0 .39 0 .757-.002 1.07-.04 10.47 1.602 19.216 4.324 25.38h.023v.053c1.783 4.02 4.563 8.506 4.563 8.506l1 .817h-5.187s-.674-4.068-1.753-6.49c-1.104-.71-2.465-1.13-3.935-1.13-1.47 0-2.832.42-3.936 1.13-1.08 2.422-1.753 6.49-1.753 6.49H.022l1-.816s2.78-4.487 4.562-8.506v-.052h.023c2.722-6.164 4.363-14.91 4.324-25.38l-.002-1.07-1.064-.737v-.626H9.93zm2.108 22.187h-2.28c-.448 1.966-.997 3.847-1.638 5.626h5.555c-.64-1.78-1.19-3.66-1.637-5.625zm-.33-1.56c-.36-1.834-.633-3.732-.81-5.682-.178 1.95-.45 3.848-.81 5.68h1.62z"/></svg><span>83 - 85 bd Vincent Auriol,<br>75013 Paris</span>
+								</li>
+								<li class="footer-contacts-phones">
+								  <svg viewBox="0 0 23 23" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
+									<g><path d="M6.523 6.076l2.943 3.712c-.172.238-.356.504-.522.767.13.26.492.778 1.322 1.608.856.83 1.375 1.192 1.634 1.322.204-.136.41-.28.603-.416l3.92 2.837c-.335.528-.75.962-.867 1.053l-.052.052-.077.026c-.312.13-.65.207-1.038.207-2.464 0-5.524-2.93-5.887-3.293-.467-.467-4.227-4.33-3.112-6.898l.027-.078.052-.052c.072-.102.527-.512 1.053-.848zM13 12.712c.303-.22.52-.38.56-.394l.103-.026.104.026c1.608.26 2.878 1.608 3.034 1.97.144.322.07.717-.1 1.104l-3.7-2.68zM7.045 5.785c.24-.11.476-.183.68-.183.155 0 .284.026.388.078.363.18 1.737 1.426 1.997 3.034l.027.103-.026.104c-.01.022-.12.164-.28.376l-2.784-3.51zM11.03.423c6.072 0 11 4.93 11 11 0 6.072-4.928 11-11 11-6.07 0-11-4.928-11-11 0-6.07 4.93-11 11-11zm0 1.66c5.155 0 9.34 4.186 9.34 9.34 0 5.155-4.185 9.34-9.34 9.34-5.154 0-9.34-4.185-9.34-9.34 0-5.154 4.186-9.34 9.34-9.34z"/></g>
+								  </svg><span>FR:  +33 1 75 57 47 63<br>US: +1 (716) 989 6531</span>
+								</li>
+								<li class="footer-contacts-email">
+								  <svg viewBox="0 0 23 23" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
+									<g><path d="M11.03.56c6.072 0 11 4.93 11 11 0 6.072-4.928 11-11 11-6.07 0-11-4.928-11-11 0-6.07 4.93-11 11-11zm0 1.662c5.155 0 9.34 4.184 9.34 9.34 0 5.154-4.185 9.34-9.34 9.34-5.154 0-9.34-4.186-9.34-9.34 0-5.156 4.186-9.34 9.34-9.34zM17.257 7.514v8.094H4.804V7.514h12.453zm-1.47 6.843L13.21 11.78l-2.18 1.882-2.178-1.883-2.578 2.577h9.514zm-1.886-3.2l1.973 1.905V9.135l-1.972 2.02zm-7.71-2.04v3.916l1.993-1.922L6.19 9.117zm8.63-.448H7.214c1.116 1.037 3.51 3.23 3.818 3.23.31 0 2.685-2.193 3.79-3.23z"/></g>
+								  </svg><span><a href="mailto:contact@lokad.com">contact@lokad.com</a></span>
+								</li>
+							  </ul>
+							</div>
+						  </div>
+						  <div class="col-md-8 col-lg-6">
+							<div class="footer-main">
+							  <div class="footer-caption">Our Vision</div>
+							  <div class="row">
+								<div class="col-md-7">
+								  <ul class="footer-nav">
+									<li><a href="https://www.lokad.com/quantitative-supply-chain-manifesto">Supply Chain Manifesto</a></li>
+									<li><a href="https://www.lokad.com/test-of-supply-chain-performance">Test of supply chain performance</a></li>
+									<li><a href="https://www.lokad.com/introduction-to-quantitative-supply-chain">Quantitative Supply Chain</a></li>
+									<li><a href="https://www.lokad.com/decision-driven-optimization">Decision-driven optimization</a></li>
+								  </ul>
+								</div>
+								<div class="col">
+								  <ul class="footer-nav">
+									<li><a href="https://www.lokad.com/business-drivers-in-supply-chain">Economic drivers</a></li>
+									<li><a href="https://www.lokad.com/probabilistic-forecasting">Probabilistic forecasting</a></li>
+									<li><a href="https://www.lokad.com/the-supply-chain-scientist">The Supply Chain Scientist</a></li>
+									<li><a href="https://www.lokad.com/project-timeline">Timeline of a typical project</a></li>
+								  </ul>
+								</div>
+							  </div>
+							</div>
+						  </div>
+						  <div class="col-md-8 footer-last-section col-lg-3">
+							<div class="footer-right">
+							  <div class="footer-caption">Stay Informed</div>
+							  <ul class="footer-nav">
+								<li><span>Sign up here for the newsletter</span>
+								  <form class="footer-newsletter" id="subForm" action="https://lokad.relenta.com/api/httpform" method="post" enctype="multipart/form-data" _lpchecked="1">
+									<input type="hidden" name="department_key" value="42470cc020cf89a0b57e420d2e1a3660">
+									<input type="hidden" name="r_redirect" value="https://www.lokad.com/newsletter-thank-you">
+									<input type="hidden" name="subject" value="Newsletter registration">
+									<input type="hidden" name="contact_groups" value="174004606">
+									<input class="footer-newsletter-text" type="text" placeholder="Enter your email address" name="email">
+									<input class="footer-newsletter-btn" type="submit" value="Sign up">
+								  </form>
+								</li>
+							  </ul>
+							</div>
+						  </div>
+						</div>
+						<div class="footer-social"><a class="social-item" href="https://www.youtube.com/LokadTV"><svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><g><path d="M17.808.947c9.536 0 17.278 7.742 17.278 17.278 0 9.535-7.742 17.277-17.278 17.277C8.273 35.502.53 27.76.53 18.225.53 8.69 8.274.947 17.81.947zm0 2.608c8.097 0 14.67 6.573 14.67 14.67 0 8.096-6.573 14.67-14.67 14.67-8.096 0-14.67-6.574-14.67-14.67 0-8.097 6.574-14.67 14.67-14.67z"/><path d="M11.42 7.793h1.252l.86 3.218.796-3.217h1.264l-1.448 4.786v3.265H12.9V12.58l-1.48-4.787zm5.733 2.063c-.973 0-1.618.643-1.618 1.595v2.912c0 1.047.547 1.592 1.618 1.592.888 0 1.587-.594 1.587-1.592v-2.91c0-.93-.693-1.596-1.587-1.596zm.46 4.457c0 .323-.164.56-.46.56-.306 0-.483-.248-.483-.56V11.55c0-.326.15-.567.46-.567.34 0 .484.234.484.566v2.763zm4.112-4.408v4.51c-.134.167-.434.444-.65.444-.234 0-.293-.163-.293-.4V9.904h-1.104v4.964c0 .586.18 1.06.77 1.06.335 0 .8-.174 1.277-.742v.656h1.105v-5.94h-1.105zm1.916 12.047c-.39 0-.47.274-.47.664v.573h.93v-.575c0-.383-.08-.663-.46-.663zm-4.088.035c-.073.038-.145.095-.217.172v3.524c.086.092.17.16.25.2.17.086.42.092.537-.06.06-.08.092-.208.092-.39v-2.92c0-.19-.038-.335-.112-.434-.128-.168-.366-.186-.55-.093zm4.196-4.516c-2.263-.153-9.62-.153-11.88 0-2.446.168-2.735 1.646-2.753 5.536.018 3.883.304 5.368 2.753 5.535 2.26.155 9.617.155 11.88 0 2.447-.166 2.735-1.645 2.754-5.534-.02-3.883-.305-5.368-2.754-5.535zm-10.713 9.29H11.85v-6.554h-1.226v-1.113h3.636v1.113h-1.226v6.555zm4.213 0h-1.052v-.624c-.194.23-.396.406-.605.526-.566.325-1.344.318-1.344-.83v-4.727h1.05v4.336c0 .23.056.382.28.382.206 0 .49-.264.62-.424v-4.293h1.05v5.656h.002zm4.048-1.17c0 .7-.262 1.243-.96 1.243-.387 0-.707-.14-1-.507v.435h-1.062v-7.667h1.062v2.47c.237-.29.56-.53.935-.53.77 0 1.027.652 1.027 1.418v3.14zm3.887-1.524H23.17v1.067c0 .424.038.79.46.79.444 0 .47-.298.47-.79v-.393h1.083v.425c0 1.09-.468 1.75-1.576 1.75-1.004 0-1.518-.732-1.518-1.75v-2.54c0-.98.647-1.663 1.596-1.663 1.01 0 1.496.642 1.496 1.664v1.44z"/></g></svg></a><a class="social-item" href="https://www.linkedin.com/company/lokad"><svg viewBox="0 0 35 36" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><g><path d="M17.29.947c9.536 0 17.278 7.742 17.278 17.278 0 9.535-7.742 17.277-17.278 17.277C7.754 35.502.012 27.76.012 18.225.012 8.69 7.754.947 17.29.947zm0 2.608c8.096 0 14.67 6.573 14.67 14.67 0 8.096-6.574 14.67-14.67 14.67S2.62 26.32 2.62 18.224c0-8.097 6.574-14.67 14.67-14.67z" /><g><path d="M8.982 15.66l3.406-.042V26.77l-3.406.044V15.66zM15.24 15.66l3.254-.04V17.44c.964-.945 1.958-1.66 3.545-1.66 1.872 0 3.683.785 3.683 3.342v7.65l-3.303.05v-5.845c0-1.288-.323-2.12-1.862-2.12-1.356 0-1.924.244-1.924 2.028v5.888l-3.394.04V15.662zM12.586 12.143c0 1.03-.835 1.865-1.865 1.865-1.028 0-1.863-.835-1.863-1.865s.835-1.864 1.864-1.864c1.03 0 1.866.834 1.866 1.863z"/></g></g></svg></a><a class="social-item" href="https://twitter.com/lokad"><svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><g><path d="M17.772.947c9.535 0 17.277 7.742 17.277 17.278 0 9.535-7.743 17.277-17.278 17.277C8.236 35.502.494 27.76.494 18.225.494 8.69 8.236.947 17.772.947zm0 2.608c8.096 0 14.67 6.573 14.67 14.67 0 8.096-6.574 14.67-14.67 14.67-8.097 0-14.67-6.574-14.67-14.67 0-8.097 6.573-14.67 14.67-14.67z" /><path d="M14.32 26.822c7.683 0 11.884-6.364 11.884-11.882 0-.18-.004-.36-.012-.54.816-.59 1.525-1.325 2.084-2.163-.75.333-1.554.557-2.4.658.864-.517 1.526-1.335 1.838-2.31-.807.478-1.7.826-2.652 1.013-.762-.81-1.847-1.32-3.05-1.32-2.305 0-4.175 1.87-4.175 4.177 0 .327.036.646.108.952-3.47-.175-6.55-1.837-8.61-4.364-.357.618-.564 1.335-.564 2.1 0 1.45.738 2.728 1.86 3.476-.686-.022-1.33-.21-1.892-.523v.053c0 2.023 1.44 3.71 3.35 4.094-.35.096-.72.147-1.1.147-.27 0-.532-.025-.786-.074.53 1.66 2.073 2.867 3.9 2.9-1.428 1.12-3.23 1.788-5.186 1.788-.337 0-.67-.02-.996-.058 1.848 1.185 4.043 1.876 6.402 1.876"/></g></svg></a></div>
+						<div class="footer-copy">
+						  <p>&copy; 2007-2018 Lokad. All rights reserved. | <a href="https://www.lokad.com/terms">Terms of Service</a></p>
+						</div>
+					  </div>
+		</footer>
+		{{ end }}
+	{{ template "_internal/google_analytics_async.html" . }}
+	{{ with .Site.Params.foot }}{{ range . }}
+	{{ . | safeHTML }}{{ end }}{{ end }}
+	</body>
+</html>
