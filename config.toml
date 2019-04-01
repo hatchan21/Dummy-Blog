@@ -18,7 +18,7 @@ summaryLength = 10
 # disqusShortname = "your-disqus-shortname"
 # googleAnalytics = "your-google-analytics-id"
 [outputs]
-home = [ "RSS", "HTML"]
+home = [ "HTML", "RSS"]
 
 [outputFormats]
 [outputFormats.RSS]
